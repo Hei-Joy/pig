@@ -160,7 +160,9 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
     </build>
+
 
     <!-- 使用aliyun镜像 -->
     <repositories>
