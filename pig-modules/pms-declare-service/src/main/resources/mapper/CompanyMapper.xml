@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.mapper.CompanyMapper">
+
+    <sql id="companyBean">
+        SELECT
+        id,
+        fullname,
+        address,
+        organizationcode,
+        troopsorsecrecy,
+        bank,
+        postalcode,
+        unitproperty,
+        unitattribute,
+        competentdepartment,
+        accountnumber,
+        unitcharacteristics,
+        affiliation,
+        CreateDate,
+        OperatorId,
+        isDelete,
+        updateDate
+        FROM company
+    </sql>
+    <!-- 插入单位信息并返回id -->
+    <insert id="insert" parameterType="com.mall.model.entity.Company">
+      <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      </selectKey>
+      INSERT INTO company(id, fullname, address, organizationcode, troopsorsecrecy,
+      bank, postalcode, unitproperty, unitattribute, competentdepartment,
+      accountnumber, unitcharacteristics, affiliation, createdate, operatorid,
+      isdelete, updatedate)
+      VALUES (#{id}, #{fullname}, #{address}, #{organizationcode}, #{troopsorsecrecy},
+      #{bank}, #{postalcode}, #{unitproperty}, #{unitproperty}, #{competentdepartment},
+      #{accountnumber}, #{unitcharacteristics}, #{affiliation}, #{createdate}, #{operatorid},
+      #{isdelete}, #{updatedate})
+    </insert>
+
+    <delete id="deleteCompany" parameterType="java.lang.String">
+        DELETE company WHERE id = #{id}
+    </delete>
+
+    <update id="updateCompany" parameterType="com.mall.model.entity.Company">
+        UPDATE company
+        <set>
+            <if test="fullname != null">
+                fullname = #{fullname}
+            </if>
+            <if test="address != address">
+                address = #{address}
+            </if>
+            <if test="organizationcode != null">
+                organizationcode = #{organizationcode}
+            </if>
+            <if test="troopsorsecrecy != null">
+                troopsorsecrecy = #{troopsorsecrecy}
+            </if>
+            <if test="bank != null">
+                bank = #{bank}
+            </if>
+            <if test="OperatorId">
+                OperatorId = #{OperatorId}
+            </if>
+            <if test="postalcode != null">
+                postalcode = #{postalcode}
+            </if>
+            <if test="unitproperty != null">
+                unitproperty = #{unitproperty}
+            </if>
+            <if test="unitattribute != null">
+                unitattribute = #{unitattribute}
+            </if>
+            <if test="competentdepartment != address">
+                competentdepartment = #{competentdepartment}
+            </if>
+            <if test="accountnumber != null">
+                accountnumber = #{accountnumber}
+            </if>
+            <if test="unitcharacteristics != null">
+                unitcharacteristics = #{unitcharacteristics}
+            </if>
+            <if test="affiliation != null">
+                affiliation = #{affiliation}
+            </if>
+            <if test="createdate">
+                Createdate = #{createdate}
+            </if>
+            <if test="operatorid != null">
+                Operatorid = #{operatorid}
+            </if>
+            <if test="isdelete != null">
+                isDelete = #{isdelete}
+            </if>
+            <if test="updatedate != null">
+                updateDate = #{updatedate}
+            </if>
+            WHERE id = #{id}
+        </set>
+    </update>
+
+    <select id="findCompanyById" parameterType="java.lang.String" resultType="com.mall.model.entity.Company">
+      <include refid="companyBean"/>
+        WHERE id = #{id}
+    </select>
+</mapper>

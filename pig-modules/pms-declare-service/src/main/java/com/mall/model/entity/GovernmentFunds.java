@@ -1,7 +1,10 @@
 package com.mall.model.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class GovernmentFunds {
     private String id;
 

@@ -6,11 +6,18 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CompanyMapper {
+
+    int deleteCompany(String id);
+
+    int updateCompany(Company company);
+
+    Company findCompanyById(String id);
+
     long countByExample(CompanyExample example);
 
     int deleteByExample(CompanyExample example);
 
-    int insert(Company record);
+    int insert(Company company);
 
     int insertSelective(Company record);
 

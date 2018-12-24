@@ -1,7 +1,9 @@
 package com.mall.model.entity;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class Shareholder {
     private String id;
 
