@@ -21,7 +21,7 @@ public class CompanyController {
      * @return
      */
     @GetMapping("/insert")
-    public boolean insertCompany(){
+    public boolean insertCompany(Company company){
         companyService.insertCompany(company);
         return Boolean.TRUE;
         return false;
