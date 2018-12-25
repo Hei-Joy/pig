@@ -22,9 +22,8 @@ public class CompanyController {
      */
     @GetMapping("/insert")
     public boolean insertCompany(){
-//        companyService.insertCompany(company);
-//        return Boolean.TRUE;
-        System.out.println("前台已经传参");
+        companyService.insertCompany(company);
+        return Boolean.TRUE;
         return false;
     }
 
