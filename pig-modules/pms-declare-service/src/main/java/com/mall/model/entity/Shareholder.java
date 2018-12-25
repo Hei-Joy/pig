@@ -23,4 +23,8 @@ public class Shareholder {
 
     private Date updatedate;
 
+    private String shareholderNature;
+
+    private String investmentType;
+
    }

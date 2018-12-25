@@ -1,11 +1,12 @@
 package com.mall.service;
 
+import com.baomidou.mybatisplus.service.IService;
 import com.mall.model.entity.Shareholder;
 
 /**
  * Created by 46275 on 2018/12/24.
  */
-public interface ShareholderService {
+public interface ShareholderService extends IService<Shareholder>{
 
     /**
      * 添加股东信息

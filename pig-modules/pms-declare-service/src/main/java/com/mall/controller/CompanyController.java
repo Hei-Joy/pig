@@ -17,13 +17,15 @@ public class CompanyController {
 
     /**
      * 添加单位信息
-     * @param company
+     * @param
      * @return
      */
-    @PostMapping("/insert")
-    public boolean insertCompany(@RequestBody Company company){
-        companyService.insertCompany(company);
-        return Boolean.TRUE;
+    @GetMapping("/insert")
+    public boolean insertCompany(){
+//        companyService.insertCompany(company);
+//        return Boolean.TRUE;
+        System.out.println("前台已经传参");
+        return false;
     }
 
     /**
@@ -48,8 +50,8 @@ public class CompanyController {
      * @param id   单位信息id
      * @return
      */
-    @GetMapping("/{id}")
-    public Company company(@PathVariable String id){
-        return companyService.findCompanyById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Company company(@PathVariable String id){
+//        return companyService.findCompanyById(id);
+//    }
 }

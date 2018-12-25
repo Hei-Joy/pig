@@ -1,11 +1,12 @@
 package com.mall.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mall.model.entity.Company;
 import com.mall.model.entity.CompanyExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface CompanyMapper {
+public interface CompanyMapper extends BaseMapper<Company>{
 
     int deleteCompany(String id);
 
@@ -17,7 +18,7 @@ public interface CompanyMapper {
 
     int deleteByExample(CompanyExample example);
 
-    int insert(Company company);
+    Integer insert(Company company);
 
     int insertSelective(Company record);
 

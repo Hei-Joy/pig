@@ -1,11 +1,12 @@
 package com.mall.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.mall.model.entity.Shareholder;
 import com.mall.model.entity.ShareholderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface ShareholderMapper {
+public interface ShareholderMapper extends BaseMapper<Shareholder>{
 
     Shareholder findShareholderById(String id);
 
@@ -19,7 +20,7 @@ public interface ShareholderMapper {
 
     int deleteByExample(ShareholderExample example);
 
-    int insert(Shareholder record);
+    Integer insert(Shareholder record);
 
     int insertSelective(Shareholder record);
 

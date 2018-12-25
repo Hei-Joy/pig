@@ -1,5 +1,6 @@
 package com.mall.service.impl;
 
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mall.common.tool.Tool;
 import com.mall.mapper.CompanyMapper;
 import com.mall.model.entity.Company;
@@ -7,10 +8,7 @@ import com.mall.service.CompanyService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.SimpleTimeZone;
 
 /**
  * Created by 46275 on 2018/12/24.
@@ -18,7 +16,7 @@ import java.util.SimpleTimeZone;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyServiceImpl extends ServiceImpl<CompanyMapper,Company> implements CompanyService {
     private final CompanyMapper companyMapper;
 
     @Override

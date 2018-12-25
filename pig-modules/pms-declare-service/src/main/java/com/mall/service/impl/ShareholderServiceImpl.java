@@ -1,4 +1,5 @@
 package com.mall.service.impl;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.mall.mapper.ShareholderMapper;
 import com.mall.model.entity.Shareholder;
 import com.mall.service.ShareholderService;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class ShareholderServiceImpl implements ShareholderService {
+public class ShareholderServiceImpl extends ServiceImpl<ShareholderMapper,Shareholder> implements ShareholderService {
     private final ShareholderMapper shareholderMapper;
 
     @Override
