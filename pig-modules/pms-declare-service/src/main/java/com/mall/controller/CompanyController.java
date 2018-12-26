@@ -20,11 +20,10 @@ public class CompanyController {
      * @param
      * @return
      */
-    @GetMapping("/insert")
+    @PostMapping("/insert")
     public boolean insertCompany(Company company){
         companyService.insertCompany(company);
         return Boolean.TRUE;
-        return false;
     }
 
     /**
@@ -49,8 +48,8 @@ public class CompanyController {
      * @param id   单位信息id
      * @return
      */
-//    @GetMapping("/{id}")
-//    public Company company(@PathVariable String id){
-//        return companyService.findCompanyById(id);
-//    }
+    @GetMapping("/{id}")
+    public Company company(@PathVariable String id){
+        return companyService.findCompanyById(id);
+    }
 }
