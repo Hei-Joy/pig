@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface CompanyMapper extends BaseMapper<Company>{
 
-    int deleteCompany(String id);
+    Integer deleteCompany(String id);
 
-    int updateCompany(Company company);
+    Integer updateCompany(Company company);
 
     Company findCompanyById(String id);
 

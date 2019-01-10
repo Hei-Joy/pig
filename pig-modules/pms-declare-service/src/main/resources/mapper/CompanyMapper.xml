@@ -2,17 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mall.mapper.CompanyMapper">
-
     <sql id="companyBean">
         SELECT
         id,
         fullname,
-        address,
+        oneLevelAddress,
+        twoLevelAddress,
+        threeLevelAddress,
         organizationcode,
         troopsorsecrecy,
         bank,
         postalcode,
-        unitproperty,
+        oneLevelUnitproperty,
+        twoLevelUnitproperty,
         unitattribute,
         competentdepartment,
         accountnumber,
@@ -29,12 +31,12 @@
       <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID()
       </selectKey>
-      INSERT INTO company(id, fullname, address, organizationcode, troopsorsecrecy,
-      bank, postalcode, unitproperty, unitattribute, competentdepartment,
+      INSERT INTO company(id, fullname, oneLevelAddress, twoLevelAddress, threeLevelAddress, organizationcode, troopsorsecrecy,
+      bank, postalcode, oneLevelUnitproperty, twoLevelUnitproperty, unitattribute, competentdepartment,
       accountnumber, unitcharacteristics, affiliation, createdate, operatorid,
       isdelete, updatedate)
-      VALUES (#{id}, #{fullname}, #{address}, #{organizationcode}, #{troopsorsecrecy},
-      #{bank}, #{postalcode}, #{unitproperty}, #{unitproperty}, #{competentdepartment},
+      VALUES (#{id}, #{fullname}, #{oneLevelAddress}, #{twoLevelAddress}, #{threeLevelAddress}, #{organizationcode}, #{troopsorsecrecy},
+      #{bank}, #{postalcode}, #{oneLevelUnitproperty}, #{twoLevelUnitproperty}, #{unitproperty}, #{competentdepartment},
       #{accountnumber}, #{unitcharacteristics}, #{affiliation}, #{createdate}, #{operatorid},
       #{isdelete}, #{updatedate})
     </insert>
@@ -49,8 +51,14 @@
             <if test="fullname != null">
                 fullname = #{fullname}
             </if>
-            <if test="address != address">
-                address = #{address}
+            <if test="oneLevelAddress != null">
+                oneLevelAddress = #{oneLevelAddress}
+            </if>
+            <if test="twoLevelAddress != null">
+                twoLevelAddress = #{twoLevelAddress}
+            </if>
+            <if test="threeLevelAddress != null">
+                threeLevelAddress = #{threeLevelAddress}
             </if>
             <if test="organizationcode != null">
                 organizationcode = #{organizationcode}
@@ -67,8 +75,11 @@
             <if test="postalcode != null">
                 postalcode = #{postalcode}
             </if>
-            <if test="unitproperty != null">
-                unitproperty = #{unitproperty}
+            <if test="oneLevelUnitproperty != null">
+                oneLevelUnitproperty = #{oneLevelUnitproperty}
+            </if>
+            <if test="twoLevelUnitproperty != null">
+                twoLevelUnitproperty = #{twoLevelUnitproperty}
             </if>
             <if test="unitattribute != null">
                 unitattribute = #{unitattribute}
@@ -102,7 +113,7 @@
     </update>
 
     <select id="findCompanyById" parameterType="java.lang.String" resultType="com.mall.model.entity.Company">
-      <include refid="companyBean"/>
+      SELECT * FROM company
         WHERE id = #{id}
     </select>
 </mapper>

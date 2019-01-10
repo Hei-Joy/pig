@@ -10,7 +10,11 @@ public class Company {
 
     private String fullname;
 
-    private String address;
+    private String oneLevelAddress;
+
+    private String twoLevelAddress;
+
+    private String threeLevelAddress;
 
     private String organizationcode;
 
@@ -20,7 +24,9 @@ public class Company {
 
     private Integer postalcode;
 
-    private String unitproperty;
+    private String oneLevelUnitproperty;
+
+    private String twoLevelUnitproperty;
 
     private String unitattribute;
 
