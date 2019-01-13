@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.pig.admin.mapper.CompanyMapper">
+    <sql id="companyBean">
+        SELECT
+        id,
+        fullname,
+        oneLevelAddress,
+        twoLevelAddress,
+        threeLevelAddress,
+        organizationcode,
+        troopsorsecrecy,
+        bank,
+        postalcode,
+        oneLevelUnitproperty,
+        twoLevelUnitproperty,
+        unitattribute,
+        competentdepartment,
+        accountnumber,
+        unitcharacteristics,
+        affiliation,
+        CreateDate,
+        OperatorId,
+        isDelete,
+        updateDate
+        FROM company
+    </sql>
+    <resultMap id="companyResultMap" type="com.github.pig.admin.model.entity.Company">
+        <id column="id" property="id"/>
+        <result column="fullname" property="fullname"/>
+        <result column="oneLevelAddress" property="oneLevelAddress"/>
+        <result column="twoLevelAddress" property="twoLevelAddress"/>
+        <result column="threeLevelAddress" property="threeLevelAddress"/>
+        <result column="organizationcode" property="organizationcode"/>
+        <result column="troopsorsecrecy" property="troopsorsecrecy"/>
+        <result column="bank" property="bank"/>
+        <result column="postalcode" property="postalcode"/>
+        <result column="oneLevelUnitproperty" property="oneLevelUnitproperty"/>
+        <result column="twoLevelUnitproperty" property="twoLevelUnitproperty"/>
+        <result column="unitattribute" property="unitattribute"/>
+        <result column="competentdepartment" property="competentdepartment"/>
+        <result column="accountnumber" property="accountnumber"/>
+        <result column="unitcharacteristics" property="unitcharacteristics"/>
+        <result column="affiliation" property="affiliation"/>
+        <result column="createdate" property="createdate"/>
+        <result column="operatorid" property="operatorid"/>
+        <result column="isdelete" property="isdelete"/>
+        <result column="updatedate" property="updatedate"/>
+    </resultMap>
+    <!-- 插入单位信息并返回id -->
+    <insert id="insertCompany" parameterType="com.github.pig.admin.model.entity.Company">
+      <!--<selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">-->
+          <!--SELECT LAST_INSERT_ID()-->
+      <!--</selectKey>-->
+      INSERT INTO company(id, fullname, oneLevelAddress, twoLevelAddress, threeLevelAddress, organizationcode, troopsorsecrecy,
+      bank, postalcode, oneLevelUnitproperty, twoLevelUnitproperty, unitattribute, competentdepartment,
+      accountnumber, unitcharacteristics, affiliation, createdate, operatorid,
+      isdelete, updatedate)
+      VALUES (#{id}, #{fullname}, #{oneLevelAddress}, #{twoLevelAddress}, #{threeLevelAddress}, #{organizationcode}, #{troopsorsecrecy},
+      #{bank}, #{postalcode}, #{oneLevelUnitproperty}, #{twoLevelUnitproperty}, #{competentdepartment},
+      #{accountnumber}, #{unitcharacteristics}, #{affiliation}, #{createdate}, #{operatorid},
+      #{isdelete}, #{updatedate})
+    </insert>
+
+    <delete id="deleteCompany" parameterType="java.lang.String">
+        DELETE FROM company WHERE id = #{id}
+    </delete>
+
+    <update id="updateCompany" parameterType="com.github.pig.admin.model.entity.Company">
+        UPDATE company
+        <set>
+            <if test="fullname != null">
+                fullname = #{fullname}
+            </if>
+            <if test="oneLevelAddress != null">
+                oneLevelAddress = #{oneLevelAddress}
+            </if>
+            <if test="twoLevelAddress != null">
+                twoLevelAddress = #{twoLevelAddress}
+            </if>
+            <if test="threeLevelAddress != null">
+                threeLevelAddress = #{threeLevelAddress}
+            </if>
+            <if test="organizationcode != null">
+                organizationcode = #{organizationcode}
+            </if>
+            <if test="troopsorsecrecy != null">
+                troopsorsecrecy = #{troopsorsecrecy}
+            </if>
+            <if test="bank != null">
+                bank = #{bank}
+            </if>
+            <if test="OperatorId">
+                OperatorId = #{OperatorId}
+            </if>
+            <if test="postalcode != null">
+                postalcode = #{postalcode}
+            </if>
+            <if test="oneLevelUnitproperty != null">
+                oneLevelUnitproperty = #{oneLevelUnitproperty}
+            </if>
+            <if test="twoLevelUnitproperty != null">
+                twoLevelUnitproperty = #{twoLevelUnitproperty}
+            </if>
+            <if test="unitattribute != null">
+                unitattribute = #{unitattribute}
+            </if>
+            <if test="competentdepartment != address">
+                competentdepartment = #{competentdepartment}
+            </if>
+            <if test="accountnumber != null">
+                accountnumber = #{accountnumber}
+            </if>
+            <if test="unitcharacteristics != null">
+                unitcharacteristics = #{unitcharacteristics}
+            </if>
+            <if test="affiliation != null">
+                affiliation = #{affiliation}
+            </if>
+            <if test="createdate">
+                Createdate = #{createdate}
+            </if>
+            <if test="operatorid != null">
+                Operatorid = #{operatorid}
+            </if>
+            <if test="isdelete != null">
+                isDelete = #{isdelete}
+            </if>
+            <if test="updatedate != null">
+                updateDate = #{updatedate}
+            </if>
+            WHERE id = #{id}
+        </set>
+    </update>
+
+    <select id="findCompanyById" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.Company">
+      SELECT * FROM company
+        WHERE id = #{id}
+    </select>
+</mapper>

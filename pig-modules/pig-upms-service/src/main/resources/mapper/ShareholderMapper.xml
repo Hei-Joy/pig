@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.pig.admin.mapper.ShareholderMapper">
+
+    <sql id="selectShareholder">
+        SELECT
+        id,
+        company_Id,
+        name,
+        nationality,
+        proportion,
+        CreateDate,
+        OperatorId,
+        isDelete,
+        updateDate
+        FROM
+        shareholder
+    </sql>
+
+    <select id="findShareholderById" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.Shareholder">
+      <include refid="selectShareholder"/>
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteShareholder" parameterType="java.lang.String">
+      DELETE  FROM  shareholder
+      WHERE id = #{id}
+    </delete>
+
+    <update id="updateShareholder" parameterType="com.github.pig.admin.model.entity.Shareholder">
+      UPDATE shareholder
+      <set>
+          <if test="company_Id != null">
+              company_Id = #{company_Id}
+          </if>
+          <if test="name != null">
+              name = #{name}
+          </if>
+          <if test="nationality != null">
+              nationality = #{nationality}
+          </if>
+          <if test="proportion != null">
+              proportion = #{roportion}
+          </if>
+          <if test="CreateDate != null">
+              CreateDate = #{createdate}
+          </if>
+          <if test="OperatorId">
+              OperatorId = #{operatorid}
+          </if>
+          <if test="isDelete != null">
+              isDelete = #{isdelete}
+          </if>
+          <if test="updateDate != null">
+              updateDate = #{updatedate}
+          </if>
+      </set>
+      WHERE id = #{id}
+    </update>
+    
+    <insert id="insertShareholder" parameterType="com.github.pig.admin.model.entity.Shareholder">
+      INSERT INTO shareholder (id, company_Id, name,
+        nationality, proportion, CreateDate, OperatorId
+        isDelete, updateDate)
+        VALUES (#{id}, #{company_Id}, #{name},
+         #{nationality}, #{proportion}, #{createdate}, #{operatorid},
+         #{isdelete}, #{updatedate})
+    </insert>
+</mapper>
