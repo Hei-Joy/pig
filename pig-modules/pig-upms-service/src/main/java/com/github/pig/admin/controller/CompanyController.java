@@ -2,6 +2,8 @@ package com.github.pig.admin.controller;
 
 import com.github.pig.admin.model.entity.Company;
 import com.github.pig.admin.service.CompanyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private CompanyService companyService;
@@ -50,6 +53,7 @@ public class CompanyController {
      */
     @GetMapping("/{id}")
     public Company company(@PathVariable String id){
+        logger.info("执行查询单位信息ID:{}",id);
         return companyService.findCompanyById(id);
     }
 }
