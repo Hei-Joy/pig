@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.mall","com.github.pig.common.bean"})
+@ComponentScan(basePackages = {"com.github.pig.declare","com.github.pig.common.bean"})
 public class DaclareApplication {
 
 
