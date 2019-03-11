@@ -127,11 +127,13 @@ public class ValidateCodeFilter extends ZuulFilter {
      */
     private void checkCode(HttpServletRequest httpServletRequest) throws ValidateCodeException {
         String code = httpServletRequest.getParameter("code");
+
         if (StrUtil.isBlank(code)) {
             throw new ValidateCodeException("请输入验证码");
         }
 
         String randomStr = httpServletRequest.getParameter("randomStr");
+
         if (StrUtil.isBlank(randomStr)) {
             randomStr = httpServletRequest.getParameter("mobile");
         }

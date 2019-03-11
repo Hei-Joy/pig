@@ -26,7 +26,7 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-      defaultZone: http://pig:gip6666@localhost:1025/eureka
+      defaultZone: http://pig:gip6666@47.105.163.104:1025/eureka
     registry-fetch-interval-seconds: 10
 #认证服务器地址
 security:
@@ -38,7 +38,7 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    ip-address: 47.105.163.104
+    #ip-address: 47.105.163.104
   client:
     serviceUrl:
       defaultZone: http://pig:gip6666@eureka:1025/eureka
@@ -46,4 +46,4 @@ eureka:
 #建议使用ng负载均衡
 security:
   auth:
-    server: http://localhost:3000
+    server: http://47.105.163.104:3000
