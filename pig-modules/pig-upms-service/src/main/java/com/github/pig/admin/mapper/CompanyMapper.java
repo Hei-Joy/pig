@@ -3,8 +3,8 @@ package com.github.pig.admin.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import java.util.List;
 
-import com.github.pig.admin.model.entity.Company;
 import com.github.pig.admin.model.entity.CompanyExample;
+import com.github.pig.admin.model.entity.Company;
 import org.apache.ibatis.annotations.Param;
 
 public interface CompanyMapper extends BaseMapper<Company>{

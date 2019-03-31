@@ -18,9 +18,9 @@
 package com.github.pig.admin.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.github.pig.admin.mapper.SysOauthClientDetailsMapper;
 import com.github.pig.admin.model.entity.SysOauthClientDetails;
 import com.github.pig.admin.service.SysOauthClientDetailsService;
+import com.github.pig.admin.mapper.SysOauthClientDetailsMapper;
 import org.springframework.stereotype.Service;
 
 /**

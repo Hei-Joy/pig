@@ -42,7 +42,7 @@ public class PigResourcesGenerator {
 
 
     public static void main(String[] args) {
-        String outputDir = "/Users/lengleng/work/temp";
+        String outputDir = "/users/carle/work/temp";
         final String viewOutputDir = outputDir + "/view/";
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
@@ -64,8 +64,8 @@ public class PigResourcesGenerator {
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("lengleng");
-        dsc.setUrl("jdbc:mysql://139.224.200.249:3309/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false");
+        dsc.setPassword("960215_Xiaozhen");
+        dsc.setUrl("jdbc:mysql://47.107.243.232:3306/hndr?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -78,7 +78,7 @@ public class PigResourcesGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.github.pig.admin");
+        pc.setParent("com.github.pig.pfp");
         pc.setController("controller");
         mpg.setPackageInfo(pc);
 

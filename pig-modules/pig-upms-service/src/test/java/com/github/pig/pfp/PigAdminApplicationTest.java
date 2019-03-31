@@ -15,7 +15,7 @@
  * Author: lengleng (wangiegie@gmail.com)
  */
 
-package com.github.pig.admin;
+package com.github.pig.pfp;
 
 import com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor;
 import org.jasypt.encryption.StringEncryptor;

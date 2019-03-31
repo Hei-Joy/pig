@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.pig.admin.mapper.CaseInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.CaseInfo">
+        <id column="GUID" property="guid" />
+        <result column="TOPORGID" property="toporgid" />
+        <result column="INPUTTIME" property="inputtime" />
+        <result column="BATCHNO" property="batchno" />
+        <result column="BANKID" property="bankid" />
+        <result column="BANKNAME" property="bankname" />
+        <result column="BRANCH" property="branch" />
+        <result column="SUB_BRANCH" property="subBranch" />
+        <result column="OPERATORORG" property="operatororg" />
+        <result column="OPERATTIME" property="operattime" />
+        <result column="BATCHENDDATE" property="batchenddate" />
+        <result column="NAME" property="name" />
+        <result column="PINYIN" property="pinyin" />
+        <result column="SEX" property="sex" />
+        <result column="CERTNO" property="certno" />
+        <result column="QQ" property="qq" />
+        <result column="WEIXIN" property="weixin" />
+        <result column="ADDR" property="addr" />
+        <result column="ZIPCODE" property="zipcode" />
+        <result column="TEL" property="tel" />
+        <result column="MOBILE" property="mobile" />
+        <result column="EMAIL" property="email" />
+        <result column="BILLADDR" property="billaddr" />
+        <result column="BILLZIPCODE" property="billzipcode" />
+        <result column="REGADDR" property="regaddr" />
+        <result column="REGZIPCODE" property="regzipcode" />
+        <result column="DEPTNAME" property="deptname" />
+        <result column="DEPTADDR" property="deptaddr" />
+        <result column="DEPTZIPCODE" property="deptzipcode" />
+        <result column="DEPTTEL" property="depttel" />
+        <result column="JOBTITLE" property="jobtitle" />
+        <result column="HOMEADDR" property="homeaddr" />
+        <result column="HOMEZIPCODE" property="homezipcode" />
+        <result column="HOMETEL" property="hometel" />
+        <result column="HOLDERREMARK" property="holderremark" />
+        <result column="CLOSEDATE" property="closedate" />
+        <result column="CASEPROPERTY" property="caseproperty" />
+        <result column="CASETYPE" property="casetype" />
+        <result column="APPLYNO" property="applyno" />
+        <result column="BUSSNO" property="bussno" />
+        <result column="CARDNO" property="cardno" />
+        <result column="OPEN_DATE" property="openDate" />
+        <result column="CREDIT" property="credit" />
+        <result column="BILLDATE" property="billdate" />
+        <result column="EXPIRE" property="expire" />
+        <result column="BALANCE" property="balance" />
+        <result column="LASTPAYDATE" property="lastpaydate" />
+        <result column="LASTPAYSUM" property="lastpaysum" />
+        <result column="LEVEL" property="level" />
+        <result column="PROD" property="prod" />
+        <result column="LOANDATE" property="loandate" />
+        <result column="LOANTERM" property="loanterm" />
+        <result column="OVERDUEDATE" property="overduedate" />
+        <result column="OVERDUEDAYS" property="overduedays" />
+        <result column="OVERDUEPERIOD" property="overdueperiod" />
+        <result column="OVERDUEBEGINPERIOD" property="overduebeginperiod" />
+        <result column="PUTOUTSUM" property="putoutsum" />
+        <result column="PERBACKSUM" property="perbacksum" />
+        <result column="BUSSNESSSUM" property="bussnesssum" />
+        <result column="OVERDUECORPUS" property="overduecorpus" />
+        <result column="OVERINTEREST" property="overinterest" />
+        <result column="WYJ" property="wyj" />
+        <result column="FXINTEREST" property="fxinterest" />
+        <result column="FULI" property="fuli" />
+        <result column="LOANPERIOD" property="loanperiod" />
+        <result column="PAIEDPERIOD" property="paiedperiod" />
+        <result column="PAIEDTOTAL" property="paiedtotal" />
+        <result column="YONGJINBILI" property="yongjinbili" />
+        <result column="YONGJIN" property="yongjin" />
+        <result column="MANAGEMENT" property="management" />
+        <result column="POUNDAGE" property="poundage" />
+        <result column="ASSURETYPE" property="assuretype" />
+        <result column="ASSUREPROD" property="assureprod" />
+        <result column="CASEREMARK" property="caseremark" />
+        <result column="LASTCONTACTNAME" property="lastcontactname" />
+        <result column="LASTCONTACTTIME" property="lastcontacttime" />
+        <result column="LASTCONTACTRESULT" property="lastcontactresult" />
+        <result column="LASTCONTACTCONTENT" property="lastcontactcontent" />
+        <result column="LASTATTITUDE" property="lastattitude" />
+        <result column="LASTPAYTYPE" property="lastpaytype" />
+        <result column="LASTPROMISEMONEY" property="lastpromisemoney" />
+        <result column="LASTPAYTIME" property="lastpaytime" />
+        <result column="STATUS" property="status" />
+        <result column="OWNERID" property="ownerid" />
+        <result column="NOTE" property="note" />
+        <result column="INPUTORGID" property="inputorgid" />
+        <result column="INPUTUSERID" property="inputuserid" />
+        <result column="UNTELDAYS" property="unteldays" />
+        <result column="EXITDAYS" property="exitdays" />
+        <result column="CASEHOLDID" property="caseholdid" />
+        <result column="CSUSERID" property="csuserid" />
+        <result column="ORGID" property="orgid" />
+        <result column="ATTRIBUTE1" property="attribute1" />
+        <result column="ATTRIBUTE2" property="attribute2" />
+        <result column="ATTRIBUTE3" property="attribute3" />
+        <result column="ATTRIBUTE4" property="attribute4" />
+        <result column="ATTRIBUTE5" property="attribute5" />
+        <result column="ATTRIBUTE6" property="attribute6" />
+        <result column="ATTRIBUTE7" property="attribute7" />
+        <result column="ATTRIBUTE8" property="attribute8" />
+        <result column="ATTRIBUTE9" property="attribute9" />
+        <result column="ATTRIBUTE10" property="attribute10" />
+        <result column="ATTRIBUTE11" property="attribute11" />
+        <result column="ATTRIBUTE12" property="attribute12" />
+        <result column="ATTRIBUTE13" property="attribute13" />
+        <result column="ATTRIBUTE14" property="attribute14" />
+        <result column="ATTRIBUTE15" property="attribute15" />
+        <result column="ATTRIBUTE16" property="attribute16" />
+        <result column="ATTRIBUTE17" property="attribute17" />
+        <result column="ATTRIBUTE18" property="attribute18" />
+        <result column="ATTRIBUTE19" property="attribute19" />
+        <result column="ATTRIBUTE20" property="attribute20" />
+        <result column="CASESTATUS" property="casestatus" />
+        <result column="BACKBALANCE" property="backbalance" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GUID AS guid, TOPORGID AS toporgid, INPUTTIME AS inputtime, BATCHNO AS batchno, BANKID AS bankid, BANKNAME AS bankname, BRANCH AS branch, SUB_BRANCH AS subBranch, OPERATORORG AS operatororg, OPERATTIME AS operattime, BATCHENDDATE AS batchenddate, NAME AS name, PINYIN AS pinyin, SEX AS sex, CERTNO AS certno, QQ AS qq, WEIXIN AS weixin, ADDR AS addr, ZIPCODE AS zipcode, TEL AS tel, MOBILE AS mobile, EMAIL AS email, BILLADDR AS billaddr, BILLZIPCODE AS billzipcode, REGADDR AS regaddr, REGZIPCODE AS regzipcode, DEPTNAME AS deptname, DEPTADDR AS deptaddr, DEPTZIPCODE AS deptzipcode, DEPTTEL AS depttel, JOBTITLE AS jobtitle, HOMEADDR AS homeaddr, HOMEZIPCODE AS homezipcode, HOMETEL AS hometel, HOLDERREMARK AS holderremark, CLOSEDATE AS closedate, CASEPROPERTY AS caseproperty, CASETYPE AS casetype, APPLYNO AS applyno, BUSSNO AS bussno, CARDNO AS cardno, OPEN_DATE AS openDate, CREDIT AS credit, BILLDATE AS billdate, EXPIRE AS expire, BALANCE AS balance, LASTPAYDATE AS lastpaydate, LASTPAYSUM AS lastpaysum, LEVEL AS level, PROD AS prod, LOANDATE AS loandate, LOANTERM AS loanterm, OVERDUEDATE AS overduedate, OVERDUEDAYS AS overduedays, OVERDUEPERIOD AS overdueperiod, OVERDUEBEGINPERIOD AS overduebeginperiod, PUTOUTSUM AS putoutsum, PERBACKSUM AS perbacksum, BUSSNESSSUM AS bussnesssum, OVERDUECORPUS AS overduecorpus, OVERINTEREST AS overinterest, WYJ AS wyj, FXINTEREST AS fxinterest, FULI AS fuli, LOANPERIOD AS loanperiod, PAIEDPERIOD AS paiedperiod, PAIEDTOTAL AS paiedtotal, YONGJINBILI AS yongjinbili, YONGJIN AS yongjin, MANAGEMENT AS management, POUNDAGE AS poundage, ASSURETYPE AS assuretype, ASSUREPROD AS assureprod, CASEREMARK AS caseremark, LASTCONTACTNAME AS lastcontactname, LASTCONTACTTIME AS lastcontacttime, LASTCONTACTRESULT AS lastcontactresult, LASTCONTACTCONTENT AS lastcontactcontent, LASTATTITUDE AS lastattitude, LASTPAYTYPE AS lastpaytype, LASTPROMISEMONEY AS lastpromisemoney, LASTPAYTIME AS lastpaytime, STATUS AS status, OWNERID AS ownerid, NOTE AS note, INPUTORGID AS inputorgid, INPUTUSERID AS inputuserid, UNTELDAYS AS unteldays, EXITDAYS AS exitdays, CASEHOLDID AS caseholdid, CSUSERID AS csuserid, ORGID AS orgid, ATTRIBUTE1 AS attribute1, ATTRIBUTE2 AS attribute2, ATTRIBUTE3 AS attribute3, ATTRIBUTE4 AS attribute4, ATTRIBUTE5 AS attribute5, ATTRIBUTE6 AS attribute6, ATTRIBUTE7 AS attribute7, ATTRIBUTE8 AS attribute8, ATTRIBUTE9 AS attribute9, ATTRIBUTE10 AS attribute10, ATTRIBUTE11 AS attribute11, ATTRIBUTE12 AS attribute12, ATTRIBUTE13 AS attribute13, ATTRIBUTE14 AS attribute14, ATTRIBUTE15 AS attribute15, ATTRIBUTE16 AS attribute16, ATTRIBUTE17 AS attribute17, ATTRIBUTE18 AS attribute18, ATTRIBUTE19 AS attribute19, ATTRIBUTE20 AS attribute20, CASESTATUS AS casestatus, BACKBALANCE AS backbalance
+    </sql>
+
+</mapper>

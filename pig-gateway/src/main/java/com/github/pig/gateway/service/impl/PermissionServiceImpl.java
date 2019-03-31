@@ -49,7 +49,7 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
-        //ele-admin options 跨域配置，现在处理是通过前端配置代理，不使用这种方式，存在风险
+        //ele-pfp options 跨域配置，现在处理是通过前端配置代理，不使用这种方式，存在风险
 //        if (HttpMethod.OPTIONS.name().equalsIgnoreCase(request.getMethod())) {
 //            return true;
 //        }

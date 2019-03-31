@@ -18,9 +18,9 @@
 package com.github.pig.admin.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.pig.admin.service.SysDeptRelationService;
 import com.github.pig.admin.mapper.SysDeptRelationMapper;
 import com.github.pig.admin.model.entity.SysDeptRelation;
-import com.github.pig.admin.service.SysDeptRelationService;
 import org.springframework.stereotype.Service;
 
 /**

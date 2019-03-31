@@ -1,6 +1,6 @@
 package com.github.pig.admin.controller;
-import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.entity.Shareholder;
+import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.service.ShareholderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
