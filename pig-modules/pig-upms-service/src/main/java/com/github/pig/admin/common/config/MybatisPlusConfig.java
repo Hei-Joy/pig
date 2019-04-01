@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2017/10/29
  */
 @Configuration
-@MapperScan("com.github.pig.pfp.mapper")
+@MapperScan("com.github.pig.admin.mapper")
 public class MybatisPlusConfig {
     /**
      * 分页插件
