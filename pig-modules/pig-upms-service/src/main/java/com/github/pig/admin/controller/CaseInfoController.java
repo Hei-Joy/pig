@@ -1,6 +1,7 @@
 package com.github.pig.admin.controller;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.enums.SqlLike;
 import com.github.pig.admin.common.util.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +46,13 @@ public class CaseInfoController extends BaseController {
     * @return 分页对象
     */
     @RequestMapping("/page")
-    public Page page(@RequestParam Map<String, Object> params) {
-        //params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
-        return caseInfoService.selectPage(new Query<>(params), new EntityWrapper<>());
+    public Page page(@RequestParam Map<String, Object> params,String name) {
+        params.remove("name");
+        EntityWrapper<CaseInfo> wrapper = new EntityWrapper<>();
+        if(null != name){
+            wrapper.like("name",name);
+        }
+        return caseInfoService.selectPage(new Query<>(params), wrapper);
     }
 
     /**

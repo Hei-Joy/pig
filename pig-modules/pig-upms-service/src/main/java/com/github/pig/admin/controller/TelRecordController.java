@@ -52,11 +52,10 @@ public class TelRecordController extends BaseController {
      * @return
      */
     @PostMapping("/insert")
-    public R<Boolean> add(TelRecord telRecord){
+    public R<Boolean> add(@RequestBody TelRecord telRecord){
         telRecord.setGuid(Tool.getUUid());//设置主键
         telRecord.setInputtime(Tool.getDate());//设置时间
-        System.out.println("---------------------" + telRecordService.insert(telRecord));
-        return new R<>(Boolean.TRUE);
+        return new R<>(telRecordService.insert(telRecord));
     }
 
 }
