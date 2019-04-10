@@ -5,6 +5,7 @@ import com.github.pig.admin.model.entity.Shareholder;
 import com.github.pig.admin.service.ShareholderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class ShareholderServiceImpl extends ServiceImpl<ShareholderMapper,Shareholder> implements ShareholderService {
-    private final ShareholderMapper shareholderMapper;
+    @Autowired  private ShareholderMapper shareholderMapper;
 
     @Override
     public boolean insertShareholder(Shareholder shareholder) {

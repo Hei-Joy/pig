@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.pig.admin.mapper.TelRecordMapper">
+
+    <sql id="Base_Column_List">
+        GUID, TOPORGID, INPUTUSERID, INPUTORGID, INPUTTIME, CID, TELTIME, CNAME, TELNO, RESULT,
+        PROMISEMONEY, PAYTIME, NEXTTIME, CONTENT, ATTITUDE, PAYTYPE, CELLPHONE
+    </sql>
+
+    <select id="selectByCid" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.TelRecord">
+        select
+        <include refid="Base_Column_List" />
+        from tel_record
+        where CID = #{cid,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.github.pig.admin.model.entity.TelRecord">
+        insert into tel_record (GUID, TOPORGID, INPUTUSERID,
+        INPUTORGID, INPUTTIME, CID,
+        TELTIME, CNAME, TELNO,
+        RESULT, PROMISEMONEY, PAYTIME,
+        NEXTTIME, CONTENT, ATTITUDE,
+        PAYTYPE, CELLPHONE)
+        values (#{guid,jdbcType=VARCHAR}, #{toporgid,jdbcType=VARCHAR}, #{inputuserid,jdbcType=VARCHAR},
+        #{inputorgid,jdbcType=VARCHAR}, #{inputtime,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR},
+        #{teltime,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{telno,jdbcType=VARCHAR},
+        #{result,jdbcType=VARCHAR}, #{promisemoney,jdbcType=VARCHAR}, #{paytime,jdbcType=VARCHAR},
+        #{nexttime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{attitude,jdbcType=VARCHAR},
+        #{paytype,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR})
+    </insert>
+</mapper>

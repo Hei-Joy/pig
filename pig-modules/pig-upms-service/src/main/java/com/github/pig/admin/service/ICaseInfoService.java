@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ICaseInfoService extends IService<CaseInfo> {
 
+    @Override
+    boolean insert(CaseInfo caseInfo);
+
+    boolean inserCaseInfo(CaseInfo caseInfo);
 }

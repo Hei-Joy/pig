@@ -39,4 +39,30 @@ public class UserDTO extends SysUser {
      * 新密码
      */
     private String newpassword1;
+
+    public List<Integer> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Integer> role) {
+        this.role = role;
+    }
+
+    @Override
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    @Override
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getNewpassword1() {
+        return newpassword1;
+    }
+
+    public void setNewpassword1(String newpassword1) {
+        this.newpassword1 = newpassword1;
+    }
 }

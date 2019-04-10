@@ -1,6 +1,7 @@
 package com.github.pig.admin.controller;
 import java.util.Map;
-import java.util.Date;
+
+import com.github.pig.admin.common.util.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.github.pig.common.constant.CommonConstant;
@@ -28,7 +29,7 @@ public class CaseInfoController extends BaseController {
     /**
     * 通过ID查询
     *
-    * @param id ID
+    * @param id
     * @return CaseInfo
     */
     @GetMapping("/{id}")
@@ -45,7 +46,7 @@ public class CaseInfoController extends BaseController {
     */
     @RequestMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
-        params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
+        //params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
         return caseInfoService.selectPage(new Query<>(params), new EntityWrapper<>());
     }
 
@@ -54,9 +55,11 @@ public class CaseInfoController extends BaseController {
      * @param  caseInfo  实体
      * @return success/false
      */
-    @PostMapping
+    @PostMapping("/add")
     public R<Boolean> add(@RequestBody CaseInfo caseInfo) {
-        return new R<>(caseInfoService.insert(caseInfo));
+        caseInfo.setGuid(Tool.getUUid());//设置主键id
+        caseInfo.setInputtime(Tool.getDate());//设置存入日期
+        return new R<>(caseInfoService.inserCaseInfo(caseInfo));
     }
 
     /**

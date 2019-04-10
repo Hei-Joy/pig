@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
 
+    Integer inserCaseInfo(CaseInfo caseInfo);
 }
