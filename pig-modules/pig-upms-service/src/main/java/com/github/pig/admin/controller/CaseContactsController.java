@@ -8,6 +8,7 @@ import com.github.pig.common.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,11 +27,10 @@ public class CaseContactsController {
      * @return
      */
     @RequestMapping("/page")
-    public Page page(@RequestParam Map<String,Object> params,String cid){
-        params.remove("cid");
-        EntityWrapper<CaseContacts> wrapper = new EntityWrapper<>();
-        wrapper.eq("cid",cid);
-        return caseContactsService.selectPage(new Query<>(params),wrapper);
+    public Page page(int page,int limit,String cid){
+        return caseContactsService.selectPage(new Page<CaseContacts>(page,limit)
+                ,new EntityWrapper<CaseContacts>()
+                        .eq("cid",cid));
     }
 
 }
