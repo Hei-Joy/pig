@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.pig.admin.mapper.CaseContactsMapper">
+    <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.CaseContacts">
+        <id column="GUID" jdbcType="VARCHAR" property="guid" />
+        <result column="TOPORGID" jdbcType="VARCHAR" property="toporgid" />
+        <result column="INPUTUSERID" jdbcType="VARCHAR" property="inputuserid" />
+        <result column="INPUTORGID" jdbcType="VARCHAR" property="inputorgid" />
+        <result column="INPUTTIME" jdbcType="VARCHAR" property="inputtime" />
+        <result column="CID" jdbcType="VARCHAR" property="cid" />
+        <result column="IDNO" jdbcType="VARCHAR" property="idno" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+        <result column="RELATION" jdbcType="VARCHAR" property="relation" />
+        <result column="TEL" jdbcType="VARCHAR" property="tel" />
+        <result column="CELLPHONE" jdbcType="VARCHAR" property="cellphone" />
+        <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+        <result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+        <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+        <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    </resultMap>
+</mapper>
