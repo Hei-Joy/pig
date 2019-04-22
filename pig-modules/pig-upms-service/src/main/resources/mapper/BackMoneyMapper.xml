@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.pig.admin.mapper.BackMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.BackMoney" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="TOPORGID" property="toporgid" jdbcType="VARCHAR" />
+    <result column="INPUTUSERID" property="inputuserid" jdbcType="VARCHAR" />
+    <result column="INPUTORGID" property="inputorgid" jdbcType="VARCHAR" />
+    <result column="INPUTTIME" property="inputtime" jdbcType="VARCHAR" />
+    <result column="CID" property="cid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CERTID" property="certid" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="PAYTIME" property="paytime" jdbcType="VARCHAR" />
+    <result column="IMPTIME" property="imptime" jdbcType="VARCHAR" />
+    <result column="INMONEY" property="inmoney" jdbcType="VARCHAR" />
+    <result column="DUEMONEY" property="duemoney" jdbcType="VARCHAR" />
+    <result column="DUEINTEREST" property="dueinterest" jdbcType="VARCHAR" />
+    <result column="BATCHNO" property="batchno" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="BALANCE" property="balance" jdbcType="VARCHAR" />
+    <result column="OWNERID" property="ownerid" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByCard" parameterType="String" resultType="com.github.pig.admin.model.entity.BackMoney">
+    SELECT * FROM back_money WHERE CARDNO = #{card}
+  </select>
+</mapper>
