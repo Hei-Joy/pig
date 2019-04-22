@@ -1,6 +1,7 @@
 package com.github.pig.admin.controller;
 import java.util.Map;
 import com.github.pig.admin.common.util.Tool;
+import com.github.pig.admin.model.dto.CaseDTO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +32,16 @@ public class CaseInfoController extends BaseController {
     * @param id
     * @return CaseInfo
     */
+//    @GetMapping("/{id}")
+//    public R<CaseInfo> get(@PathVariable String id) {
+//        CaseInfo caseInfo = caseInfoService.selectById(id);
+//        return new R<>(caseInfo);
+//    }
+
     @GetMapping("/{id}")
-    public R<CaseInfo> get(@PathVariable String id) {
-        return new R<>(caseInfoService.selectById(id));
+    public R<CaseDTO> get(@PathVariable String id){
+        CaseDTO caseDTO = caseInfoService.selectCaseDTO(id);
+        return new R<>(caseDTO);
     }
 
 

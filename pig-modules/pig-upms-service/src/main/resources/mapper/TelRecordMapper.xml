@@ -6,11 +6,36 @@
         GUID, TOPORGID, INPUTUSERID, INPUTORGID, INPUTTIME, CID, TELTIME, CNAME, TELNO, RESULT,
         PROMISEMONEY, PAYTIME, NEXTTIME, CONTENT, ATTITUDE, PAYTYPE, CELLPHONE
     </sql>
+    <sql id="selectLibrary">
+        select
+          tel.GUID,
+          tel.TOPORGID,
+          tel.INPUTUSERID,
+          tel.INPUTORGID,
+          tel.INPUTTIME,
+          tel.CID,
+          tel.TELTIME,
+          tel.CNAME,
+          tel.TELNO,
+          b.ITEMNAME as RESULT,
+          tel.PROMISEMONEY,
+          tel.PAYTIME,
+          tel.NEXTTIME,
+          tel.CONTENT,
+          c.ITEMNAME AS ATTITUDE,
+          tel.PAYTYPE,
+          tel.CELLPHONE
+        from tel_record tel
+        LEFT JOIN code_library b
+        ON b.ITEMNO = tel.RESULT
+        AND b.CODENO = 'TelResult'
+        Left JOIN code_library c
+        ON c.ITEMNO = tel.ATTITUDE
+        AND c.CODENO = 'Attitude'
+    </sql>
 
     <select id="selectByCid" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.TelRecord">
-        select
-        <include refid="Base_Column_List" />
-        from tel_record
+        <include refid="selectLibrary"/>
         where CID = #{cid,jdbcType=VARCHAR}
     </select>
 
@@ -28,4 +53,37 @@
         #{nexttime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{attitude,jdbcType=VARCHAR},
         #{paytype,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR})
     </insert>
+
+    <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.TelRecord" >
+        <id column="GUID" property="guid" jdbcType="VARCHAR" />
+        <result column="TOPORGID" property="toporgid" jdbcType="VARCHAR" />
+        <result column="INPUTUSERID" property="inputuserid" jdbcType="VARCHAR" />
+        <result column="INPUTORGID" property="inputorgid" jdbcType="VARCHAR" />
+        <result column="INPUTTIME" property="inputtime" jdbcType="VARCHAR" />
+        <result column="CID" property="cid" jdbcType="VARCHAR" />
+        <result column="TELTIME" property="teltime" jdbcType="VARCHAR" />
+        <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+        <result column="TELNO" property="telno" jdbcType="VARCHAR" />
+        <result column="RESULT" property="result" jdbcType="VARCHAR" />
+        <result column="PROMISEMONEY" property="promisemoney" jdbcType="VARCHAR" />
+        <result column="PAYTIME" property="paytime" jdbcType="VARCHAR" />
+        <result column="NEXTTIME" property="nexttime" jdbcType="VARCHAR" />
+        <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+        <result column="ATTITUDE" property="attitude" jdbcType="VARCHAR" />
+        <result column="PAYTYPE" property="paytype" jdbcType="VARCHAR" />
+        <result column="CELLPHONE" property="cellphone" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="TelPage" type="com.baomidou.mybatisplus.plugins.Page">
+        <collection property="records" resultMap="BaseResultMap"/>
+    </resultMap>
+
+    <select id="selectPageByCid" resultType="com.github.pig.admin.model.entity.TelRecord">
+      <include refid="selectLibrary"/>
+      where cid = #{cid} limit #{current},#{limit}
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+      select count(*) from tel_record where cid =#{cid}
+    </select>
 </mapper>

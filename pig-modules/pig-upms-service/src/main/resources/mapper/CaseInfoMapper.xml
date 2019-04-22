@@ -197,4 +197,15 @@
         #{attribute20,jdbcType=VARCHAR}, #{casestatus,jdbcType=VARCHAR}, #{backbalance,jdbcType=VARCHAR}
         )
     </insert>
+
+    <select id="selectCaseDTO" parameterType="String" resultType="com.github.pig.admin.model.dto.CaseDTO">
+        select a.*,b.BALANCE AS blackBalance
+            from case_info a
+            LEFT JOIN
+            back_money b
+            ON
+            a.CARDNO = b.CARDNO
+            WHERE
+	        a.GUID = #{guid}
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.github.pig.admin.service.impl;
 import com.baomidou.mybatisplus.mapper.SqlHelper;
+import com.github.pig.admin.model.dto.CaseDTO;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.mapper.CaseInfoMapper;
 import com.github.pig.admin.service.ICaseInfoService;
@@ -23,5 +24,11 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
     public boolean inserCaseInfo(CaseInfo caseInfo){
         return SqlHelper.delBool(caseInfoMapper.inserCaseInfo(caseInfo));
     }
+
+    @Override
+    public CaseDTO selectCaseDTO(String guid) {
+        return caseInfoMapper.selectCaseDTO(guid);
+    }
+
 
 }

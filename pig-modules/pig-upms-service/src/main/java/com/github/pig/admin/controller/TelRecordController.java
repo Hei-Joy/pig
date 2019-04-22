@@ -1,12 +1,8 @@
 package com.github.pig.admin.controller;
-
-
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.entity.TelRecord;
 import com.github.pig.admin.service.TelRecordService;
-import com.github.pig.common.util.Query;
 import com.github.pig.common.util.R;
 import com.github.pig.common.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +31,15 @@ public class TelRecordController extends BaseController {
 
     /**
      * 分页条件查询 查询条件为cid 案件主键
-     * @param params
+     * @param
      * @param cid
      * @return
      */
     @GetMapping("/page")
-    public Page pageByCid(Map<String,Object> params,String cid){
-        EntityWrapper<TelRecord> wrapper = new EntityWrapper<>();
-        wrapper.eq("cid",cid);
-        return telRecordService.selectPage(new Query<>(params),wrapper);
+    public Page pageByCid(Integer page, Integer limit, String cid){
+        Page<TelRecord> telRecordPage = telRecordService.selectPageByCid(page.intValue(),limit.intValue(),cid);
+        System.out.println(telRecordPage);
+        return telRecordPage;
     }
 
     /**
