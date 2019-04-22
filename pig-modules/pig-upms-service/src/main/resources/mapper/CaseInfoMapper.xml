@@ -207,5 +207,6 @@
             a.CARDNO = b.CARDNO
             WHERE
 	        a.GUID = #{guid}
+	        ORDER BY b.INPUTTIME DESC limit 1
     </select>
 </mapper>
