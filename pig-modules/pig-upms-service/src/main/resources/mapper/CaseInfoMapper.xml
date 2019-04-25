@@ -209,4 +209,36 @@
 	        a.GUID = #{guid}
 	        ORDER BY b.INPUTTIME DESC limit 1
     </select>
+
+    <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        SELECT
+            a.*
+        FROM
+            case_info a
+        LEFT JOIN case_contacts b ON a.GUID = b.CID
+        WHERE
+            CONCAT_WS(
+                IFNULL(a.ADDR,'无'),
+                IFNULL(a.`NAME`,'无'),
+                IFNULL(a.MOBILE,'无'),
+                IFNULL(b.REMARK,'无')
+            ) LIKE CONCAT('%',#{keyWord},'%')
+        limit #{current},#{limit}
+    </select>
+
+    <select id="selectCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+            count(*)
+        FROM
+            case_info a
+        LEFT JOIN case_contacts b ON a.GUID = b.CID
+        WHERE
+            CONCAT_WS(
+                IFNULL(a.ADDR,'无'),
+                IFNULL(a.`NAME`,'无'),
+                IFNULL(a.MOBILE,'无'),
+                IFNULL(b.REMARK,'无')
+            ) LIKE CONCAT('%',#{keyWord},'%')
+    </select>
+
 </mapper>

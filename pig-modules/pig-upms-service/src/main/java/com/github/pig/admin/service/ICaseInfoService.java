@@ -1,5 +1,6 @@
 package com.github.pig.admin.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.model.dto.CaseDTO;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.baomidou.mybatisplus.service.IService;
@@ -20,4 +21,6 @@ public interface ICaseInfoService extends IService<CaseInfo> {
     boolean inserCaseInfo(CaseInfo caseInfo);
 
     CaseDTO selectCaseDTO(String guid);
+
+    Page<CaseInfo> selectPageByKey(int page,int limit,String key);
 }

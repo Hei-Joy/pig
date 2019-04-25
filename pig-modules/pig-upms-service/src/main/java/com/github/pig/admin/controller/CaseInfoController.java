@@ -45,20 +45,32 @@ public class CaseInfoController extends BaseController {
     }
 
 
+//    /**
+//    * 分页查询信息
+//    *
+//    * @param params 分页对象
+//    * @return 分页对象
+//    */
+//    @RequestMapping("/page")
+//    public Page page(@RequestParam Map<String, Object> params,String name) {
+//        params.remove("name");
+//        EntityWrapper<CaseInfo> wrapper = new EntityWrapper<>();
+//        if(!StringUtils.isBlank(name)){
+//            wrapper.like("name",name);
+//        }
+//        return caseInfoService.selectPage(new Query<>(params), wrapper);
+//    }
+
     /**
-    * 分页查询信息
-    *
-    * @param params 分页对象
-    * @return 分页对象
-    */
+     * 分页查询信息
+     * @param page  页数
+     * @param limit 最大记录数
+     * @param key   关键词
+     * @return
+     */
     @RequestMapping("/page")
-    public Page page(@RequestParam Map<String, Object> params,String name) {
-        params.remove("name");
-        EntityWrapper<CaseInfo> wrapper = new EntityWrapper<>();
-        if(!StringUtils.isBlank(name)){
-            wrapper.like("name",name);
-        }
-        return caseInfoService.selectPage(new Query<>(params), wrapper);
+    public Page page(int page, int limit,String key){
+        return  caseInfoService.selectPageByKey(page,limit,key);
     }
 
     /**
@@ -81,7 +93,6 @@ public class CaseInfoController extends BaseController {
     @DeleteMapping("/{id}")
     public R<Boolean> delete(@PathVariable String id) {
         CaseInfo caseInfo = new CaseInfo();
-
         caseInfo.setGuid(id);
        // caseInfo.setUpdateTime(new Date());
         //caseInfo.setDelFlag(CommonConstant.STATUS_DEL);

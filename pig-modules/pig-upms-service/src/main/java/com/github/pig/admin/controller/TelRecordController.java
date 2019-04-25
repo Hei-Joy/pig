@@ -37,9 +37,7 @@ public class TelRecordController extends BaseController {
      */
     @GetMapping("/page")
     public Page pageByCid(Integer page, Integer limit, String cid){
-        Page<TelRecord> telRecordPage = telRecordService.selectPageByCid(page.intValue(),limit.intValue(),cid);
-        System.out.println(telRecordPage);
-        return telRecordPage;
+        return telRecordService.selectPageByCid(page.intValue(),limit.intValue(),cid);
     }
 
     /**
