@@ -2,6 +2,7 @@ package com.github.pig.admin.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.github.pig.admin.model.entity.CaseContacts;
 import com.github.pig.admin.model.entity.TelRecord;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,6 @@ public interface TelRecordMapper extends BaseMapper<TelRecord> {
     int selectCount(String cid);
 
     List<TelRecord> selectPageByCid(@Param("current") int current,@Param("limit") int limit,@Param("cid") String cid);
+
+
 }

@@ -72,10 +72,7 @@
         <result column="ATTITUDE" property="attitude" jdbcType="VARCHAR" />
         <result column="PAYTYPE" property="paytype" jdbcType="VARCHAR" />
         <result column="CELLPHONE" property="cellphone" jdbcType="VARCHAR" />
-    </resultMap>
-
-    <resultMap id="TelPage" type="com.baomidou.mybatisplus.plugins.Page">
-        <collection property="records" resultMap="BaseResultMap"/>
+        <result column="DISPLAY" property="display" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="selectPageByCid" resultType="com.github.pig.admin.model.entity.TelRecord">
