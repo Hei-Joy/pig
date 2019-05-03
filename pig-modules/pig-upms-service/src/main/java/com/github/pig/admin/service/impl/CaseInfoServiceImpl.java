@@ -34,16 +34,40 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
     @Override
     public Page<CaseInfo> selectPageByKey(int page,int limit,String key) {
         int current = (page -1) * limit;
-        Page<CaseInfo> pages = new Page<>();
-        pages.setCurrent(page);//设置当前页数
-        pages.setSize(limit);//设置获取最大记录数
+        Page<CaseInfo> pages = this.buildPage(page,limit);
         pages.setTotal(caseInfoMapper.selectCount(key).intValue());//设置符合条件的所有记录
-        System.out.println(pages.getSize());
-        System.out.println(caseInfoMapper.selectPageByKey(current,limit,key));
         pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key));
         pages.getPages();//设置最大页数
         return pages;
     }
+
+    @Override
+    public Page<CaseInfo> selectPageByName(int page, int limit, String name) {
+        int current = (page -1) * limit;
+        Page<CaseInfo> pages = this.buildPage(page,limit);
+        pages.setTotal(caseInfoMapper.selectCountByName(name));//设置查询的记录总数
+        pages.setRecords(caseInfoMapper.selectPageByName(current,limit,name));
+        pages.getPages();//设置最大页数
+        return pages;
+    }
+
+    @Override
+    public Page<CaseInfo> selectPageNoKey(int page, int limit) {
+        int current = (page - 1) * limit;
+        Page<CaseInfo> pages = this.buildPage(page,limit);
+        pages.setTotal(caseInfoMapper.selectCountNoKey());
+        pages.setRecords(caseInfoMapper.selectPageNoKey(current,limit));
+        pages.getPages();
+        return pages;
+    }
+
+    private Page<CaseInfo> buildPage(int page ,int limit){
+        Page<CaseInfo> pages = new Page<>();
+        pages.setCurrent(page);
+        pages.setSize(limit);//设置获取最大记录数
+        return pages;
+    }
+
 
 
 }

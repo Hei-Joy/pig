@@ -3,6 +3,7 @@ import java.util.Map;
 import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.dto.CaseDTO;
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -26,18 +27,18 @@ import com.github.pig.common.web.BaseController;
 public class CaseInfoController extends BaseController {
     @Autowired private ICaseInfoService caseInfoService;
 
-    /**
-    * 通过ID查询
-    *
-    * @param id
-    * @return CaseInfo
-    */
+
 //    @GetMapping("/{id}")
 //    public R<CaseInfo> get(@PathVariable String id) {
 //        CaseInfo caseInfo = caseInfoService.selectById(id);
 //        return new R<>(caseInfo);
 //    }
-
+    /**
+     * 通过ID查询
+     *
+     * @param id
+     * @return CaseInfo
+     */
     @GetMapping("/{id}")
     public R<CaseDTO> get(@PathVariable String id){
         CaseDTO caseDTO = caseInfoService.selectCaseDTO(id);
@@ -69,8 +70,24 @@ public class CaseInfoController extends BaseController {
      * @return
      */
     @RequestMapping("/page")
-    public Page page(int page, int limit,String key){
+    public Page<CaseInfo> page(int page, int limit,String key){
+        if(StringUtils.isBlank(key)){
+            int current = (page - 1) * limit;
+            return caseInfoService.selectPageNoKey(page,limit);
+        }
         return  caseInfoService.selectPageByKey(page,limit,key);
+    }
+
+    /**
+     * 根据名字字段分页查询信息
+     * @param page
+     * @param limit
+     * @param name
+     * @return
+     */
+    @RequestMapping("/pageByName")
+    public Page<CaseInfo> pageByName(int page, int limit, String name){
+        return caseInfoService.selectPageByName(page,limit,name);
     }
 
     /**

@@ -26,4 +26,12 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
     Integer selectCount(String keyWord);
 
     List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord);
+
+    Integer selectCountByName(String name);
+
+    List<CaseInfo> selectPageByName(@Param("current") int current,@Param("limit") int limit,@Param("name") String name);
+
+    Integer selectCountNoKey();
+
+    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit);
 }

@@ -241,4 +241,38 @@
             ) LIKE CONCAT('%',#{keyWord},'%')
     </select>
 
+    <select id="selectCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+          count(*)
+        FROM
+          case_info
+        WHERE
+          `NAME` LIKE CONCAT('%',#{name},'%')
+    </select>
+
+    <select id="selectPageByName" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        SELECT
+          *
+        FROM
+          case_info
+        WHERE
+          `NAME` LIKE CONCAT('%',#{name},'%')
+          limit #{current},#{limit}
+    </select>
+
+    <select id="selectCountNoKey" resultType="java.lang.Integer">
+        SELECT
+          count(*)
+        FROM
+          case_info
+    </select>
+
+    <select id="selectPageNoKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        SELECT
+          *
+        FROM
+          case_info
+        limit #{current},#{limit}
+    </select>
+
 </mapper>
