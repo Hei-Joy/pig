@@ -216,6 +216,7 @@
         FROM
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
+        LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
         WHERE
             CONCAT_WS(
                 IFNULL(a.ADDR,'无'),
@@ -223,15 +224,25 @@
                 IFNULL(a.MOBILE,'无'),
                 IFNULL(b.REMARK,'无')
             ) LIKE CONCAT('%',#{keyWord},'%')
+        AND
+            c.dept_id = (
+            select dept_id
+            FROM
+              sys_user
+            WHERE
+                    user_id = #{userId}
+        )
+        GROUP BY a.guid
         limit #{current},#{limit}
     </select>
 
-    <select id="selectCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <select id="selectCount" resultType="java.lang.Integer">
         SELECT
-            count(*)
+            count(DISTINCT a.GUID)
         FROM
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
+        LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
         WHERE
             CONCAT_WS(
                 IFNULL(a.ADDR,'无'),
@@ -239,39 +250,79 @@
                 IFNULL(a.MOBILE,'无'),
                 IFNULL(b.REMARK,'无')
             ) LIKE CONCAT('%',#{keyWord},'%')
+        AND
+            c.dept_id = (
+            select dept_id
+            FROM
+              sys_user
+            WHERE
+                    user_id = #{userId}
+        )
     </select>
 
     <select id="selectCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT
-          count(*)
+            count(*)
         FROM
-          case_info
+            case_info a
+        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
         WHERE
-          `NAME` LIKE CONCAT('%',#{name},'%')
+            `NAME` LIKE CONCAT('%', '王', '%')
+        AND
+            b.dept_id = (
+                SELECT
+                    dept_id
+                FROM
+                    sys_user
+                WHERE user_id = #{userId}
+        )
     </select>
 
     <select id="selectPageByName" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
-          *
+            a.*
         FROM
-          case_info
+            case_info a
+        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
         WHERE
-          `NAME` LIKE CONCAT('%',#{name},'%')
+            `NAME` LIKE CONCAT('%', '王', '%')
+        AND
+            b.dept_id = (
+                SELECT
+                    dept_id
+                FROM
+                    sys_user
+                WHERE user_id = #{userId}
+        )
           limit #{current},#{limit}
     </select>
 
-    <select id="selectCountNoKey" resultType="java.lang.Integer">
+    <select id="selectCountNoKey" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT
-          count(*)
+            count(*)
         FROM
-          case_info
+            case_info a
+        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
+        WHERE
+            b.dept_id = (
+                select dept_id
+                    FROM sys_user
+                where user_id = #{userId}
+        )
     </select>
 
     <select id="selectPageNoKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
-          *
+            a.*
         FROM
-          case_info
+            case_info a
+        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
+        WHERE
+            b.dept_id = (
+                select dept_id
+                    FROM sys_user
+                where user_id = #{userId}
+        )
         limit #{current},#{limit}
     </select>
 

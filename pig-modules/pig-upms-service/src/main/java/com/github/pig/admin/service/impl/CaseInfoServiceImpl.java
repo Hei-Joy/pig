@@ -32,32 +32,35 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
     }
 
     @Override
-    public Page<CaseInfo> selectPageByKey(int page,int limit,String key) {
+    public Page<CaseInfo> selectPageByKey(int page,int limit,String key,int userId) {
         int current = (page -1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(caseInfoMapper.selectCount(key).intValue());//设置符合条件的所有记录
-        pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key));
+        pages.setTotal(caseInfoMapper.selectCount(key,userId));//设置符合条件的所有记录
+        pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key, userId));
         pages.getPages();//设置最大页数
         return pages;
     }
 
     @Override
-    public Page<CaseInfo> selectPageByName(int page, int limit, String name) {
+    public Page<CaseInfo> selectPageByName(int page, int limit, String name,int userId) {
         int current = (page -1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(caseInfoMapper.selectCountByName(name));//设置查询的记录总数
-        pages.setRecords(caseInfoMapper.selectPageByName(current,limit,name));
+        pages.setTotal(caseInfoMapper.selectCountByName(name,userId));//设置查询的记录总数
+        pages.setRecords(caseInfoMapper.selectPageByName(current,limit,name,userId));
         pages.getPages();//设置最大页数
         return pages;
     }
 
     @Override
-    public Page<CaseInfo> selectPageNoKey(int page, int limit) {
+    public Page<CaseInfo> selectPageNoKey(int page, int limit,int userId) {
         int current = (page - 1) * limit;
+        System.out.println(userId);
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(caseInfoMapper.selectCountNoKey());
-        pages.setRecords(caseInfoMapper.selectPageNoKey(current,limit));
+        pages.setTotal(caseInfoMapper.selectCountNoKey(userId));
+        pages.setRecords(caseInfoMapper.selectPageNoKey(current,limit,userId));
         pages.getPages();
+        System.out.println(pages);
+        System.out.println(pages.getRecords());
         return pages;
     }
 

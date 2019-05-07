@@ -1,14 +1,10 @@
 package com.github.pig.admin.controller;
-import java.util.Map;
 import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.dto.CaseDTO;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.github.pig.common.util.Query;
 import com.github.pig.common.util.R;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.ICaseInfoService;
@@ -72,10 +68,9 @@ public class CaseInfoController extends BaseController {
     @RequestMapping("/page")
     public Page<CaseInfo> page(int page, int limit,String key){
         if(StringUtils.isBlank(key)){
-            int current = (page - 1) * limit;
-            return caseInfoService.selectPageNoKey(page,limit);
+            return caseInfoService.selectPageNoKey(page,limit,this.getUserId());
         }
-        return  caseInfoService.selectPageByKey(page,limit,key);
+        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId());
     }
 
     /**
@@ -87,7 +82,7 @@ public class CaseInfoController extends BaseController {
      */
     @RequestMapping("/pageByName")
     public Page<CaseInfo> pageByName(int page, int limit, String name){
-        return caseInfoService.selectPageByName(page,limit,name);
+        return caseInfoService.selectPageByName(page,limit,name,this.getUserId());
     }
 
     /**
