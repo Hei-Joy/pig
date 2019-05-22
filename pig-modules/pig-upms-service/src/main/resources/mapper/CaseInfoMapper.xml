@@ -217,7 +217,8 @@
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
         LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
-        WHERE
+        WHERE 1=1 AND bankname = #{bankname}
+        AND
             CONCAT_WS(
                 IFNULL(a.ADDR,'无'),
                 IFNULL(a.`NAME`,'无'),
@@ -243,7 +244,8 @@
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
         LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
-        WHERE
+        WHERE  1=1 AND bankname = #{bankname}
+        AND
             CONCAT_WS(
                 IFNULL(a.ADDR,'无'),
                 IFNULL(a.`NAME`,'无'),
@@ -297,14 +299,14 @@
           limit #{current},#{limit}
     </select>
 
-    <select id="selectCountNoKey" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    <select id="selectCountNoKey"  resultType="java.lang.Integer">
         SELECT
             count(*)
         FROM
             case_info a
         LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
-        WHERE
-            b.dept_id = (
+        WHERE  1=1 AND bankname = #{bankname}
+        AND    b.dept_id = (
                 select dept_id
                     FROM sys_user
                 where user_id = #{userId}
@@ -317,8 +319,8 @@
         FROM
             case_info a
         LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
-        WHERE
-            b.dept_id = (
+        WHERE  1=1 AND bankname = #{bankname}
+        AND    b.dept_id = (
                 select dept_id
                     FROM sys_user
                 where user_id = #{userId}

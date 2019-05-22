@@ -23,15 +23,15 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
 
     CaseDTO selectCaseDTO(String guid);
 
-    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId);
+    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname);
 
-    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId);
+    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId, @Param("bankname") String bankname);
 
     Integer selectCountByName(@Param("name") String name,@Param("userId")int userId);
 
     List<CaseInfo> selectPageByName(@Param("current") int current,@Param("limit") int limit,@Param("name") String name,@Param("userId")int userId);
 
-    Integer selectCountNoKey(int userId);
+    Integer selectCountNoKey(@Param("userId") int userId, @Param("bankname") String bankname);
 
-    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId);
+    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId, @Param("bankname") String bankname);
 }

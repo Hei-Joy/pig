@@ -1,6 +1,8 @@
 package com.github.pig.admin.controller;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.dto.CaseDTO;
+import com.github.pig.common.util.Query;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,8 @@ import com.github.pig.common.util.R;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.ICaseInfoService;
 import com.github.pig.common.web.BaseController;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -43,17 +47,17 @@ public class CaseInfoController extends BaseController {
 
 
 //    /**
-//    * 分页查询信息
+//    * 根据银行名字查询信息
 //    *
 //    * @param params 分页对象
 //    * @return 分页对象
 //    */
-//    @RequestMapping("/page")
-//    public Page page(@RequestParam Map<String, Object> params,String name) {
+//    @RequestMapping("/pageByBankName")
+//    public Page pageByBankName(@RequestParam Map<String, Object> params, String name) {
 //        params.remove("name");
 //        EntityWrapper<CaseInfo> wrapper = new EntityWrapper<>();
 //        if(!StringUtils.isBlank(name)){
-//            wrapper.like("name",name);
+//            wrapper.like("bankname",name);
 //        }
 //        return caseInfoService.selectPage(new Query<>(params), wrapper);
 //    }
@@ -66,11 +70,11 @@ public class CaseInfoController extends BaseController {
      * @return
      */
     @RequestMapping("/page")
-    public Page<CaseInfo> page(int page, int limit,String key){
+    public Page<CaseInfo> page(int page, int limit,String key,String bankname){
         if(StringUtils.isBlank(key)){
-            return caseInfoService.selectPageNoKey(page,limit,this.getUserId());
+            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname);
         }
-        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId());
+        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname);
     }
 
     /**
