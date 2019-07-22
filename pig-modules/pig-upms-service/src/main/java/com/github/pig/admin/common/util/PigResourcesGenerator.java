@@ -56,7 +56,7 @@ public class PigResourcesGenerator {
         gc.setBaseResultMap(true);
         // XML columList
         gc.setBaseColumnList(true);
-        gc.setAuthor("lengleng");
+        gc.setAuthor("sudan");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -65,7 +65,7 @@ public class PigResourcesGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("960215_Xiaozhen");
-        dsc.setUrl("jdbc:mysql://47.107.243.232:3306/hndr?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false");
+        dsc.setUrl("jdbc:mysql://47.107.243.232:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -78,7 +78,7 @@ public class PigResourcesGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.github.pig.pfp");
+        pc.setParent("com.github.pig.admin");
         pc.setController("controller");
         mpg.setPackageInfo(pc);
 

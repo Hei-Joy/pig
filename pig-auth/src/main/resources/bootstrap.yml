@@ -22,8 +22,8 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-     # defaultZone: http://pig:gip6666@47.105.163.104:1025/eureka
-     defaultZone: http://pig:gip6666@localhost:1025/eureka
+     # defaultZone: http://pig:pig@106.14.153.104:30010/eureka
+      defaultZone: http://pig:gip6666@localhost:1025/eureka
     registry-fetch-interval-seconds: 10
 
 ---

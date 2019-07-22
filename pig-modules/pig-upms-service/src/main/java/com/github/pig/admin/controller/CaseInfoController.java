@@ -12,6 +12,7 @@ import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.ICaseInfoService;
 import com.github.pig.common.web.BaseController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
