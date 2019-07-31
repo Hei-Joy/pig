@@ -126,4 +126,29 @@ public class CaseInfoController extends BaseController {
        // caseInfo.setUpdateTime(new Date());
         return new R<>(caseInfoService.updateById(caseInfo));
     }
+
+//    @PostMapping
+//    public void exportCaseInfo(String bankname,HttpServletResponse response) {
+//         XSSFWorkbook book = new XSSFWorkbook();
+//        try {
+//            List<UserParam> list = indexService.exportUser(condition);
+//            if (list != null && list.size() > 0) {
+//                XSSFSheet sheet = book.createSheet("mySheent");
+//                String[] vals = {"用户ID", "邮箱账号", "昵称", "年龄", "性别", "状态", "注册时间"};
+//                createExcel(sheet, 0, vals);
+//                for (int i = 0; i < list.size(); i++) {
+//                    UserParam entity = list.get(i);
+//                    String[] vals2 = new String[]{String.valueOf(entity.getId()), entity.getEmail(), entity.getName(), String.valueOf(entity.getAge()),
+//                            entity.getSex() == 0 ? "女" : "男", entity.getRemoved() == 0 ? "启用" : "禁用", entity.getRegisterDate()};
+//                    createExcel(sheet, i + 1, vals2);
+//                }
+//
+//                book.write(generateResponseExcel("用户列表", response));
+//            }
+//            book.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 }

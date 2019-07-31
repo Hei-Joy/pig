@@ -7,6 +7,7 @@ import com.github.pig.admin.model.entity.TelRecord;
 import com.github.pig.admin.service.ICaseInfoService;
 import com.github.pig.admin.service.TelRecordService;
 import com.github.pig.common.util.R;
+import com.github.pig.common.util.UserUtils;
 import com.github.pig.common.web.BaseController;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -53,7 +54,7 @@ public class TelRecordController extends BaseController {
      */
     @PostMapping("/insert")
     public R<Boolean> add(@RequestBody TelRecord telRecord){
-
+       //保存备注
         String cid = telRecord.getCid();
         CaseInfo caseInfo = caseInfoService.selectById(cid);
         caseInfo.setAttribute1(telRecord.getAttitude());
@@ -61,6 +62,7 @@ public class TelRecordController extends BaseController {
 
         telRecord.setGuid(Tool.getUUid());//设置主键
         telRecord.setInputtime(Tool.getDate());//设置时间
+        telRecord.setInputuserid(UserUtils.getUser());
         return new R<>(telRecordService.insert(telRecord));
     }
 

@@ -225,6 +225,8 @@
                 IFNULL(a.MOBILE,'无'),
                 IFNULL(a.DEPTNAME,'无'),
                 IFNULL(a.HOMEADDR,'无'),
+                 IFNULL(a.CERTNO,'无'),
+                  IFNULL(a.CARDNO,'无'),
                 IFNULL(b.CELLPHONE,'无'),
                 IFNULL(b.`NAME`,'无'),
                 IFNULL(b.REMARK,'无')
