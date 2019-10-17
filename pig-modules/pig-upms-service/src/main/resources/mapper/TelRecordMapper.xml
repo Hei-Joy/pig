@@ -77,7 +77,9 @@
 
     <select id="selectPageByCid" resultType="com.github.pig.admin.model.entity.TelRecord">
       <include refid="selectLibrary"/>
-      where cid = #{cid} limit #{current},#{limit}
+      where cid = #{cid}
+        order BY  tel.inputtime desc
+        limit #{current},#{limit}
     </select>
 
     <select id="selectCount" parameterType="String" resultType="int">

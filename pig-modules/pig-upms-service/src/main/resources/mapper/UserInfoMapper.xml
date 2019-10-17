@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.pig.admin.mapper.UserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.UserInfo">
+        <id column="USERID" property="userid" />
+        <result column="LOGINID" property="loginid" />
+        <result column="USERNAME" property="username" />
+        <result column="PASSWORD" property="password" />
+        <result column="ORGID" property="orgid" />
+        <result column="TOPORGID" property="toporgid" />
+        <result column="USERTYPE" property="usertype" />
+        <result column="ROLES" property="roles" />
+        <result column="IDENTITY" property="identity" />
+        <result column="SEX" property="sex" />
+        <result column="BIRTH" property="birth" />
+        <result column="ADDRESS" property="address" />
+        <result column="EMAIL" property="email" />
+        <result column="CELLPHONE" property="cellphone" />
+        <result column="STATUS" property="status" />
+        <result column="WXNO" property="wxno" />
+        <result column="IP" property="ip" />
+        <result column="LASTLOGIN" property="lastlogin" />
+        <result column="SKIN" property="skin" />
+        <result column="REMARK" property="remark" />
+        <result column="INPUTUSERID" property="inputuserid" />
+        <result column="INPUTORGID" property="inputorgid" />
+        <result column="INPUTTIME" property="inputtime" />
+        <result column="CHANNELNO" property="channelno" />
+        <result column="MUSTCALL" property="mustcall" />
+        <result column="MUSTTEL" property="musttel" />
+        <result column="MUSTBACK" property="mustback" />
+        <result column="ISEMP" property="isemp" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USERID AS userid, LOGINID AS loginid, USERNAME AS username, PASSWORD AS password, ORGID AS orgid, TOPORGID AS toporgid, USERTYPE AS usertype, ROLES AS roles, IDENTITY AS identity, SEX AS sex, BIRTH AS birth, ADDRESS AS address, EMAIL AS email, CELLPHONE AS cellphone, STATUS AS status, WXNO AS wxno, IP AS ip, LASTLOGIN AS lastlogin, SKIN AS skin, REMARK AS remark, INPUTUSERID AS inputuserid, INPUTORGID AS inputorgid, INPUTTIME AS inputtime, CHANNELNO AS channelno, MUSTCALL AS mustcall, MUSTTEL AS musttel, MUSTBACK AS mustback, ISEMP AS isemp
+    </sql>
+
+</mapper>

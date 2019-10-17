@@ -17,9 +17,12 @@
 
 package com.github.pig.admin;
 
+import com.fasterxml.jackson.databind.introspect.Annotated;
+import com.github.pig.admin.model.entity.CaseInfo;
 import com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.StandardEnvironment;
 
 /**
@@ -28,19 +31,27 @@ import org.springframework.core.env.StandardEnvironment;
  * @author lengleng
  */
 public class PigAdminApplicationTest {
-    private static final String JASYPT_ENCRYPTOR_PASSWORD = "jasypt.encryptor.password";
+//    private static final String JASYPT_ENCRYPTOR_PASSWORD = "jasypt.encryptor.password";
 
     /**
      * jasypt.encryptor.password 对应 配置中心 application-dev.yml 中的密码
      */
     @Test
     public void testEnvironmentProperties() {
-        System.setProperty(JASYPT_ENCRYPTOR_PASSWORD, "lengleng");
-        StringEncryptor stringEncryptor = new DefaultLazyEncryptor(new StandardEnvironment());
 
-        //加密方法
-        System.out.println(stringEncryptor.encrypt("123456"));
-        //解密方法
-        System.out.println(stringEncryptor.decrypt("saRv7ZnXsNAfsl3AL9OpCQ=="));
+//        System.setProperty(JASYPT_ENCRYPTOR_PASSWORD, "lengleng");
+//        StringEncryptor stringEncryptor = new DefaultLazyEncryptor(new StandardEnvironment());
+//
+//        //加密方法
+//        System.out.println(stringEncryptor.encrypt("123456"));
+//        //解密方法
+//        System.out.println(stringEncryptor.decrypt("saRv7ZnXsNAfsl3AL9OpCQ=="));
+// [PSYoungGen: 27065K->2621K(38400K)] 27065K->8773K(125952K), 0.0104888 secs]
+      //  {
+      long a=0;
+      long b=12;
+        AnnotationConfigApplicationContext fig=
+                new AnnotationConfigApplicationContext(PigAdminApplication.class);
+        fig.getBean(CaseInfo.class);
     }
 }

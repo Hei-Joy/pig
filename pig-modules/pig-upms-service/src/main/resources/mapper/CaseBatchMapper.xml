@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.pig.admin.mapper.CaseBatchMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.github.pig.admin.model.entity.CaseBatch">
+        <id column="GUID" property="guid" />
+        <result column="TOPORGID" property="toporgid" />
+        <result column="INPUTUSERID" property="inputuserid" />
+        <result column="INPUTTIME" property="inputtime" />
+        <result column="BATCHNO" property="batchno" />
+        <result column="REMARK" property="remark" />
+        <result column="BANKID" property="bankid" />
+        <result column="BANKNAME" property="bankname" />
+        <result column="SUM" property="sum" />
+        <result column="COUNT" property="count" />
+        <result column="PERCENT" property="percent" />
+        <result column="CLOSETIME" property="closetime" />
+        <result column="INPUTORGID" property="inputorgid" />
+        <result column="CLOSEUSERID" property="closeuserid" />
+        <result column="FINISHDATE" property="finishdate" />
+        <result column="CASETYPE" property="casetype" />
+        <result column="STATUS" property="status" />
+        <result column="FILEPATH" property="filepath" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GUID AS guid, TOPORGID AS toporgid, INPUTUSERID AS inputuserid, INPUTTIME AS inputtime, BATCHNO AS batchno, REMARK AS remark, BANKID AS bankid, BANKNAME AS bankname, SUM AS sum, COUNT AS count, PERCENT AS percent, CLOSETIME AS closetime, INPUTORGID AS inputorgid, CLOSEUSERID AS closeuserid, FINISHDATE AS finishdate, CASETYPE AS casetype, STATUS AS status, FILEPATH AS filepath
+    </sql>
+
+</mapper>

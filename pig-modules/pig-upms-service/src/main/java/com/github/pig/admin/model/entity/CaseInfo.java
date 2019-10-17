@@ -27,6 +27,8 @@ public class CaseInfo extends Model<CaseInfo> {
     private String inputtime;
     @TableField("BATCHNO")
     private String batchno;
+    @TableField("BATCHNOTYPE")
+    private String batchnoType;
     @TableField("BANKID")
     private String bankid;
     @TableField("BANKNAME")
@@ -145,7 +147,17 @@ public class CaseInfo extends Model<CaseInfo> {
     private String wyj;
     @TableField("FXINTEREST")
     private String fxinterest;
+
+    public String getBatchnoType() {
+        return batchnoType;
+    }
+
+    public void setBatchnoType(String batchnoType) {
+        this.batchnoType = batchnoType;
+    }
+
     @TableField("FULI")
+
     private String fuli;
     @TableField("LOANPERIOD")
     private String loanperiod;

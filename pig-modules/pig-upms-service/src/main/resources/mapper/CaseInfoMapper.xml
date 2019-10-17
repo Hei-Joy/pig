@@ -6,6 +6,7 @@
         <result column="TOPORGID" jdbcType="VARCHAR" property="toporgid" />
         <result column="INPUTTIME" jdbcType="VARCHAR" property="inputtime" />
         <result column="BATCHNO" jdbcType="VARCHAR" property="batchno" />
+        <result column="BATCHNOTYPE" jdbcType="VARCHAR" property="batchnoType" />
         <result column="BANKID" jdbcType="VARCHAR" property="bankid" />
         <result column="BANKNAME" jdbcType="VARCHAR" property="bankname" />
         <result column="BRANCH" jdbcType="VARCHAR" property="branch" />
@@ -212,12 +213,49 @@
 
     <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
+        a.*
+        FROM
+        case_info a
+        LEFT JOIN case_contacts b ON a.GUID = b.CID
+        WHERE 1=1 AND bankname = #{bankname}
+
+        AND
+        CONCAT_WS(
+        IFNULL(a.ADDR,'无'),
+        IFNULL(a.`NAME`,'无'),
+        IFNULL(a.MOBILE,'无'),
+        IFNULL(a.DEPTNAME,'无'),
+        IFNULL(a.HOMEADDR,'无'),
+        IFNULL(a.CERTNO,'无'),
+        IFNULL(a.CARDNO,'无'),
+        IFNULL(b.CELLPHONE,'无'),
+        IFNULL(b.`NAME`,'无'),
+        IFNULL(b.REMARK,'无')
+        ) LIKE CONCAT('%',#{keyWord},'%')
+        <if test="ownerid != null and ownerid != ''">
+            and a.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and a.batchno = #{batchno}
+        </if>
+        <if test="batchnoType != null and batchnoType != ''">
+            and a.batchnoType = #{batchnoType}
+        </if>
+        <if test="certno != null and certno != ''">
+            and a.certno =LIKE CONCAT('%',#{certno},'%')
+        </if>
+        GROUP BY a.guid
+        limit #{current},#{limit}
+    </select>
+    <!--<select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        SELECT
             a.*
         FROM
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
         LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
         WHERE 1=1 AND bankname = #{bankname}
+
         AND
             CONCAT_WS(
                 IFNULL(a.ADDR,'无'),
@@ -241,7 +279,7 @@
         )
         GROUP BY a.guid
         limit #{current},#{limit}
-    </select>
+    </select>-->
 
     <select id="selectCount" resultType="java.lang.Integer">
         SELECT
@@ -249,23 +287,42 @@
         FROM
             case_info a
         LEFT JOIN case_contacts b ON a.GUID = b.CID
-        LEFT JOIN sys_user c ON a.OWNERID = c.old_user_id
         WHERE  1=1 AND bankname = #{bankname}
         AND
             CONCAT_WS(
-                IFNULL(a.ADDR,'无'),
-                IFNULL(a.`NAME`,'无'),
-                IFNULL(a.MOBILE,'无'),
-                IFNULL(b.REMARK,'无')
+        IFNULL(a.ADDR,'无'),
+        IFNULL(a.`NAME`,'无'),
+        IFNULL(a.MOBILE,'无'),
+        IFNULL(a.DEPTNAME,'无'),
+        IFNULL(a.HOMEADDR,'无'),
+        IFNULL(a.CERTNO,'无'),
+        IFNULL(a.CARDNO,'无'),
+        IFNULL(b.CELLPHONE,'无'),
+        IFNULL(b.`NAME`,'无'),
+        IFNULL(b.REMARK,'无')
             ) LIKE CONCAT('%',#{keyWord},'%')
-        AND
-            c.dept_id = (
-            select dept_id
-            FROM
-              sys_user
-            WHERE
-                    user_id = #{userId}
-        )
+        <if test="ownerid != null and ownerid != ''">
+            and a.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and a.batchno = #{batchno}
+        </if>
+        <if test="batchnoType != null and batchnoType != ''">
+            and a.batchnoType = #{batchnoType}
+        </if>
+        <if test="certno != null and certno != ''">
+            and a.certno =LIKE CONCAT('%',#{certno},'%')
+        </if>
+    </select>
+
+
+    <select id="selectCountbatchNo" resultType="java.lang.Integer">
+        SELECT
+        count(DISTINCT a.GUID)
+        FROM
+        case_info a
+        WHERE  1=1 and batchno = #{batchNo}
+
     </select>
 
     <select id="selectCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
@@ -310,13 +367,20 @@
             count(*)
         FROM
             case_info a
-        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
+
         WHERE  1=1 AND bankname = #{bankname}
-        AND    b.dept_id = (
-                select dept_id
-                    FROM sys_user
-                where user_id = #{userId}
-        )
+        <if test="ownerid != null and ownerid != ''">
+            and a.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and a.batchno = #{batchno}
+        </if>
+        <if test="batchnoType != null and batchnoType != ''">
+            and a.batchnoType = #{batchnoType}
+        </if>
+        <if test="certno != null and certno != ''">
+            and a.certno =LIKE CONCAT('%',#{certno},'%')
+        </if>
     </select>
 
     <select id="selectPageNoKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
@@ -324,13 +388,19 @@
             a.*
         FROM
             case_info a
-        LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
         WHERE  1=1 AND bankname = #{bankname}
-        AND    b.dept_id = (
-                select dept_id
-                    FROM sys_user
-                where user_id = #{userId}
-        )
+        <if test="ownerid != null and ownerid != ''">
+            and a.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and a.batchno = #{batchno}
+        </if>
+        <if test="batchnoType != null and batchnoType != ''">
+            and a.batchnoType = #{batchnoType}
+        </if>
+        <if test="certno != null and certno != ''">
+            and a.certno =LIKE CONCAT('%',#{certno},'%')
+        </if>
         limit #{current},#{limit}
     </select>
 

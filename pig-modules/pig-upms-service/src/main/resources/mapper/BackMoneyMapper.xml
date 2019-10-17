@@ -24,4 +24,97 @@
   <select id="selectByCard" parameterType="String" resultType="com.github.pig.admin.model.entity.BackMoney">
     SELECT * FROM back_money WHERE CARDNO = #{card}
   </select>
+
+    <select id="selectPageNoKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
+        right join back_money m on m.cid=c.guid
+        LEFT JOIN case_contacts b ON c.GUID = b.CID
+        where 1=1  and c.name != null
+        <if test="ownerid != null and ownerid != ''">
+            and c.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and c.batchno = #{batchno}
+        </if>
+        <if test="bankname != null and bankname != ''">
+            and c.bankname = #{bankname}
+        </if>
+    </select>
+
+    <select id="selectCountNoKey" resultType="java.lang.Integer">
+        select count(c.name) from case_info c
+        right join back_money m on m.cid=c.guid   LEFT JOIN case_contacts b ON c.GUID = b.CID
+        where 1=1 and c.name != null
+
+        <if test="ownerid != null and ownerid != ''">
+            and c.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and c.batchno = #{batchno}
+        </if>
+        <if test="bankname != null and bankname != ''">
+            and c.bankname = #{bankname}
+        </if>
+    </select>
+
+  <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
+    select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
+ right join back_money m on m.cid=c.guid
+    LEFT JOIN case_contacts b ON c.GUID = b.CID
+    where 1=1 and c.name != null
+
+    AND
+    CONCAT_WS(
+    IFNULL(c.ADDR,'无'),
+    IFNULL(c.`NAME`,'无'),
+    IFNULL(c.MOBILE,'无'),
+    IFNULL(c.DEPTNAME,'无'),
+    IFNULL(c.HOMEADDR,'无'),
+    IFNULL(c.CERTNO,'无'),
+    IFNULL(c.CARDNO,'无'),
+    IFNULL(b.CELLPHONE,'无'),
+    IFNULL(b.`NAME`,'无'),
+    IFNULL(b.REMARK,'无')
+    ) LIKE CONCAT('%',#{keyWord},'%')
+    <if test="ownerid != null and ownerid != ''">
+      and c.ownerid = #{ownerid}
+    </if>
+    <if test="batchno != null and batchno != ''">
+      and c.batchno = #{batchno}
+    </if>
+      <if test="bankname != null and bankname != ''">
+          and c.bankname = #{bankname}
+      </if>
+
+
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(c.name) from case_info c
+ right join back_money m on m.cid=c.guid   LEFT JOIN case_contacts b ON c.GUID = b.CID
+    where  bankname = #{bankname}
+      and c.name != nul
+    AND
+    CONCAT_WS(
+    IFNULL(c.ADDR,'无'),
+    IFNULL(c.`NAME`,'无'),
+    IFNULL(c.MOBILE,'无'),
+    IFNULL(c.DEPTNAME,'无'),
+    IFNULL(c.HOMEADDR,'无'),
+    IFNULL(c.CERTNO,'无'),
+    IFNULL(c.CARDNO,'无'),
+    IFNULL(b.CELLPHONE,'无'),
+    IFNULL(b.`NAME`,'无'),
+    IFNULL(b.REMARK,'无')
+    ) LIKE CONCAT('%',#{keyWord},'%')
+      <if test="ownerid != null and ownerid != ''">
+          and c.ownerid = #{ownerid}
+      </if>
+      <if test="batchno != null and batchno != ''">
+          and c.batchno = #{batchno}
+      </if>
+      <if test="bankname != null and bankname != ''">
+          and c.bankname = #{bankname}
+      </if>
+  </select>
 </mapper>

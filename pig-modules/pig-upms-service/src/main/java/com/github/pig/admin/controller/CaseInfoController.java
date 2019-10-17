@@ -2,7 +2,13 @@ package com.github.pig.admin.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.model.dto.CaseDTO;
+import com.github.pig.admin.model.entity.CaseContacts;
+import com.github.pig.admin.model.entity.SysUser;
+import com.github.pig.admin.model.entity.UserInfo;
+import com.github.pig.admin.service.IUserInfoService;
+import com.github.pig.admin.service.SysUserService;
 import com.github.pig.common.util.Query;
+import com.github.pig.common.util.UserUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +19,7 @@ import com.github.pig.admin.service.ICaseInfoService;
 import com.github.pig.common.web.BaseController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +34,7 @@ import java.util.Map;
 @RequestMapping("/caseInfo")
 public class CaseInfoController extends BaseController {
     @Autowired private ICaseInfoService caseInfoService;
-
+    @Autowired private SysUserService  sysuserService;
 
 //    @GetMapping("/{id}")
 //    public R<CaseInfo> get(@PathVariable String id) {
@@ -71,12 +78,92 @@ public class CaseInfoController extends BaseController {
      * @return
      */
     @RequestMapping("/page")
-    public Page<CaseInfo> page(int page, int limit,String key,String bankname){
-        if(StringUtils.isBlank(key)){
-            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname);
+    public Page<CaseInfo> page(int page, int limit,String key,String bankname,String batchno,String ownerid,String isMine,String batchnoType,String certno ){
+
+        if("1".equals(isMine)){
+            ownerid = UserUtils.getUser();
         }
-        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname);
+        if(StringUtils.isBlank(key)){
+            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno);
+        }
+        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno);
     }
+
+
+    /**
+     * 根据批次查询
+     * 根据cid查询
+     * @return
+     */
+
+    @RequestMapping("/pageByBatch")
+    public Page pageByBatch(int page, int limit,String batchno,String distribution){
+
+        return caseInfoService.selectPage(new Page<CaseInfo>(page,limit)
+                ,new EntityWrapper<CaseInfo>()
+                        .eq("status",distribution)
+                        .eq("batchno",batchno));
+    }
+
+
+    @PostMapping("/distributionCase")
+    public Page distributionCase(@RequestBody CaseInfo caseInfo1){
+        String batchNo = caseInfo1.getBatchno();
+
+
+        //每人多少案件
+
+
+        //按照部门
+        String deptId = caseInfo1.getDeptname();
+
+        List<SysUser> userlist = sysuserService.selectList(new EntityWrapper<SysUser>());
+        List<CaseInfo> caseInfos = caseInfoService.selectList(new EntityWrapper<CaseInfo>()
+               // .eq("status",0)
+                .eq("batchno",batchNo));
+
+        if(StringUtils.isNotEmpty(deptId)){
+            userlist = sysuserService.selectList(new EntityWrapper<SysUser>().eq("dept_id",deptId));
+
+        }
+       int caseCount = caseInfos.size();
+       int userCount = userlist.size();
+        if(caseCount==0) {
+            return null;
+        }
+        //如果人数大于案件数 每人不够分
+        int perCase = caseCount/userCount;
+
+
+        if(caseCount < userCount){
+            for( int j=0;j<= caseCount;j++ ){
+                SysUser user = userlist.get(j);
+                CaseInfo caseInfo =caseInfos.get(j);
+                caseInfo.setOwnerid(user.getUsername());
+                caseInfo.setStatus("1");
+                caseInfoService.updateById(caseInfo);
+            }
+            return null;
+        }
+
+        int c=0;
+        for (int i=0;i<=userCount;i++){
+            SysUser user=   userlist.get(i);
+
+         for( int j=0;j<=perCase&&c<caseCount;j++ ){
+             CaseInfo caseInfo =caseInfos.get(c);
+             caseInfo.setOwnerid(user.getUsername());
+             caseInfo.setStatus("1");
+             caseInfoService.updateById(caseInfo);
+             c++;
+         }
+
+        }
+        return null;
+    }
+
+
+
 
     /**
      * 根据名字字段分页查询信息

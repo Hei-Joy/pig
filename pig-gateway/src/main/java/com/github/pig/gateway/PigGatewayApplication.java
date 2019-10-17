@@ -41,7 +41,7 @@ public class PigGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(PigGatewayApplication.class, args);
     }
-
+//
 // 开发时候配置跨域，现在使用vue-cli 自己的代理解决，生成部署，是用Nginx 代理
 //  @Bean
 //    @Order(Integer.MAX_VALUE)
