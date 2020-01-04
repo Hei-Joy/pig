@@ -11,7 +11,7 @@ spring:
       server:
         git:
           uri: https://gitee.com/king462755472/pig-config
-          default-label: ${spring.profiles.active}   #解决监控down11
+          default-label: ${spring.profiles.active}   #解决监控down11234
 
 # 关闭安全管理
 management:
