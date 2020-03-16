@@ -23,7 +23,7 @@ eureka:
   client:
     serviceUrl:
      # defaultZone: http://pig:pig@106.14.153.104:30010/eureka
-      defaultZone: http://pig:gip6666@localhost:1025/eureka
+      defaultZone: http://pig:gip6666@localhost:1026/eureka
     registry-fetch-interval-seconds: 10
 
 ---
@@ -35,4 +35,4 @@ eureka:
     #ip-address: 47.105.163.104
   client:
     serviceUrl:
-      defaultZone: http://pig:gip6666@eureka:1025/eureka
+      defaultZone: http://pig:gip6666@eureka:1026/eureka

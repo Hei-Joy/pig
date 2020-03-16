@@ -29,7 +29,7 @@
         select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
         right join back_money m on m.cid=c.guid
         LEFT JOIN case_contacts b ON c.GUID = b.CID
-        where 1=1  and c.name != null
+        where 1=1   and   m.cid=c.guid
         <if test="ownerid != null and ownerid != ''">
             and c.ownerid = #{ownerid}
         </if>
@@ -44,7 +44,7 @@
     <select id="selectCountNoKey" resultType="java.lang.Integer">
         select count(c.name) from case_info c
         right join back_money m on m.cid=c.guid   LEFT JOIN case_contacts b ON c.GUID = b.CID
-        where 1=1 and c.name != null
+        where 1=1  and   m.cid=c.guid
 
         <if test="ownerid != null and ownerid != ''">
             and c.ownerid = #{ownerid}
@@ -61,7 +61,7 @@
     select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
  right join back_money m on m.cid=c.guid
     LEFT JOIN case_contacts b ON c.GUID = b.CID
-    where 1=1 and c.name != null
+    where 1=1 and   m.cid=c.guid
 
     AND
     CONCAT_WS(
@@ -93,7 +93,7 @@
     select count(c.name) from case_info c
  right join back_money m on m.cid=c.guid   LEFT JOIN case_contacts b ON c.GUID = b.CID
     where  bankname = #{bankname}
-      and c.name != nul
+      and   m.cid=c.guid
     AND
     CONCAT_WS(
     IFNULL(c.ADDR,'无'),

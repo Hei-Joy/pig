@@ -1,0 +1,82 @@
+#server:
+#  port: 3000
+#
+## datasoure默认使用JDBC1
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 960215_Xiaozhen
+#    url: jdbc:mysql://47.107.243.232:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+#  freemarker:
+#    allow-request-override: false
+#    allow-session-override: false
+#    cache: true
+#    charset: UTF-8
+#    check-template-location: true
+#    content-type: text/html
+#    enabled: true
+#    expose-request-attributes: false
+#    expose-session-attributes: false
+#    expose-spring-macro-helpers: true
+#    prefer-file-system-access: true
+#    suffix: .ftl
+#    template-loader-path: classpath:/templates/
+#
+#ignore:
+#  urls:
+#    - /authentication/**
+#    - /**/*.css
+#    - /social
+#    - /signin
+#    - /signup
+#    - /info
+#    - /health
+#    - /metrics/**
+#    - /loggers/**
+#    - /mobile/token
+#
+#
+#
+
+server:
+  port: 3000
+
+# datasoure默认使用JDBC1
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: w0mjlg7f
+    url: jdbc:mysql://49.235.131.56:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+
+ignore:
+  urls:
+    - /authentication/**
+    - /**/*.css
+    - /social
+    - /signin
+    - /signup
+    - /info
+    - /health
+    - /metrics/**
+    - /loggers/**
+    - /mobile/token
+
+
+
+

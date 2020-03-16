@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-eureka
     restart: always
     ports:
-      - 1025:1025
+      - 1026:1026
 
   pig-config:
     links:
