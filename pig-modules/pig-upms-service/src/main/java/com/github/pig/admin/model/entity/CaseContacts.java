@@ -1,9 +1,12 @@
 package com.github.pig.admin.model.entity;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 @Data
 public class CaseContacts {
+    @TableId(value = "GUID",type = IdType.ID_WORKER_STR)
     private String guid;
 
     private String toporgid;

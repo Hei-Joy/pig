@@ -32,8 +32,17 @@ public class CaseContactsController {
 
     @RequestMapping("/insert")
     public R<Boolean> insert(@RequestBody CaseContacts caseContacts){
-        caseContacts.setGuid(Tool.getUUid());
-        return new R<>(caseContactsService.insert(caseContacts));
+        //caseContacts.setGuid(Tool.getUUid());
+        return new  R<>(caseContactsService.insert(caseContacts));
+    }
+
+    /**
+     * 根据guid修改联系人
+     */
+    @PutMapping("/update/{guid}")
+    public R<Boolean> update(@PathVariable String guid,
+                             @RequestBody CaseContacts caseContacts){
+        return new R<>(caseContactsService.updateById(caseContacts));
     }
 
 }

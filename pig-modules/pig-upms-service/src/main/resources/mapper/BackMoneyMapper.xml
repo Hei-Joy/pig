@@ -26,9 +26,26 @@
   </select>
 
     <select id="selectPageNoKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
-        select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
+        select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
+        from case_info c
         right join back_money m on m.cid=c.guid
         LEFT JOIN case_contacts b ON c.GUID = b.CID
+        where 1=1   and   m.cid=c.guid
+        <if test="ownerid != null and ownerid != ''">
+            and c.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and c.batchno = #{batchno}
+        </if>
+        <if test="bankname != null and bankname != ''">
+            and c.bankname = #{bankname}
+        </if>
+    </select>
+
+    <select id="selectPage" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        select c.guid,m.name,c.batchno ,c.bankname,c.cardno,c.certno,c.addr,c.mobile,c.balance,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
+        from case_info c
+        right join back_money m on m.cid=c.guid
         where 1=1   and   m.cid=c.guid
         <if test="ownerid != null and ownerid != ''">
             and c.ownerid = #{ownerid}
@@ -58,8 +75,9 @@
     </select>
 
   <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
-    select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid  from case_info c
- right join back_money m on m.cid=c.guid
+    select c.name,c.batchno ,c.bankname,c.cardno,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
+    from case_info c
+    right join back_money m on m.cid=c.guid
     LEFT JOIN case_contacts b ON c.GUID = b.CID
     where 1=1 and   m.cid=c.guid
 
@@ -91,7 +109,8 @@
 
   <select id="selectCount" resultType="java.lang.Integer">
     select count(c.name) from case_info c
- right join back_money m on m.cid=c.guid   LEFT JOIN case_contacts b ON c.GUID = b.CID
+    right join back_money m on m.cid=c.guid
+    LEFT JOIN case_contacts b ON c.GUID = b.CID
     where  bankname = #{bankname}
       and   m.cid=c.guid
     AND

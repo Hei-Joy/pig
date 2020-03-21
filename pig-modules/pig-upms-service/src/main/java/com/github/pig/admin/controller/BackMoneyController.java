@@ -1,10 +1,10 @@
 package com.github.pig.admin.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.model.entity.BackMoney;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.BackMoneyService;
-import com.github.pig.common.util.R;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +26,7 @@ public class BackMoneyController {
     @RequestMapping("/page")
     public Page<CaseInfo> page(int page, int limit, String key, String bankname, String batchno, String ownerid){
         if(StringUtils.isBlank(key)){
-
-            return backMoneyService.selectPageNoKey(page,limit,bankname,batchno,ownerid);
+            return backMoneyService.selectPage(page,limit,bankname,batchno,ownerid);
                     }
             return  backMoneyService.selectPageByKey(page,limit,key,bankname,batchno,ownerid);
     }
