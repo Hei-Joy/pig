@@ -39,9 +39,8 @@ public class CaseContactsController {
     /**
      * 根据guid修改联系人
      */
-    @PutMapping("/update/{guid}")
-    public R<Boolean> update(@PathVariable String guid,
-                             @RequestBody CaseContacts caseContacts){
+    @PostMapping("/update")
+    public R<Boolean> update(@RequestBody CaseContacts caseContacts){
         return new R<>(caseContactsService.updateById(caseContacts));
     }
 
