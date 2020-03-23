@@ -26,6 +26,7 @@ public class BackMoneyController {
     @RequestMapping("/page")
     public Page<CaseInfo> page(int page, int limit, String key, String bankname, String batchno, String ownerid){
         if(StringUtils.isBlank(key)){
+
             return backMoneyService.selectPage(page,limit,bankname,batchno,ownerid);
                     }
             return  backMoneyService.selectPageByKey(page,limit,key,bankname,batchno,ownerid);
