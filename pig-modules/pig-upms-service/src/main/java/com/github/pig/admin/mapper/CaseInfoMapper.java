@@ -29,9 +29,9 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
 
     int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
 
-    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
+    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort);
 
     Integer selectCountNoKey(@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
 
-    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
+    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort);
 }

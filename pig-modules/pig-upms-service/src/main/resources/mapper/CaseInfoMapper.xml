@@ -210,13 +210,12 @@
 	        a.GUID = #{guid}
 	        ORDER BY b.INPUTTIME DESC limit 1
     </select>
-
     <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
         a.*
         FROM
         case_info a
-           LEFT JOIN case_contacts b ON a.GUID = b.CID
+        LEFT JOIN case_contacts b ON a.GUID = b.CID
         WHERE 1=1 AND bankname = #{bankname}
 
         AND
@@ -228,7 +227,7 @@
         IFNULL(a.HOMEADDR,'无'),
         IFNULL(a.CERTNO,'无'),
         IFNULL(a.CARDNO,'无'),
-       IFNULL(b.CELLPHONE,'无'),
+        IFNULL(b.CELLPHONE,'无'),
         IFNULL(b.`NAME`,'无'),
         IFNULL(b.REMARK,'无')
         ) LIKE CONCAT('%',#{keyWord},'%')
@@ -244,9 +243,19 @@
         <if test="certno != null and certno != ''">
             and a.certno =LIKE CONCAT('%',#{certno},'%')
         </if>
+
         GROUP BY a.guid
         limit #{current},#{limit}
+        <if test = "sort == 'DESC' ">
+            ORDER BY  CAST(balance AS DECIMAL) DESC
+        </if>
+        <if test = "sort == 'ASC' ">
+            ORDER BY  CAST(balance AS DECIMAL) ASC
+        </if>
+
+
     </select>
+
     <!--<select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
             a.*
@@ -402,6 +411,13 @@
         <if test="certno != null and certno != ''">
             and a.certno =LIKE CONCAT('%',#{certno},'%')
         </if>
+        <if test = "sort == 'DESC' ">
+            ORDER BY  CAST(balance AS DECIMAL) DESC
+        </if>
+        <if test = "sort == 'ASC' ">
+            ORDER BY  CAST(balance AS DECIMAL) ASC
+        </if>
+
         limit #{current},#{limit}
     </select>
 

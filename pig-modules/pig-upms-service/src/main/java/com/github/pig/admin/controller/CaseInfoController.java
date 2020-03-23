@@ -78,15 +78,15 @@ public class CaseInfoController extends BaseController {
      * @return
      */
     @RequestMapping("/page")
-    public Page<CaseInfo> page(int page, int limit,String key,String bankname,String batchno,String ownerid,String isMine,String batchnoType,String certno ){
+    public Page<CaseInfo> page(int page, int limit,String key,String bankname,String batchno,String ownerid,String isMine,String batchnoType,String certno ,String sort){
 
         if("1".equals(isMine)){
             ownerid = UserUtils.getUser();
         }
         if(StringUtils.isBlank(key)){
-            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno);
+            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
         }
-        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno);
+        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
     }
 
 
