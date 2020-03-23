@@ -12,5 +12,5 @@ public interface TelRecordService extends IService<TelRecord> {
 
     List<TelRecord> selectByCid(String cid);
 
-    Page<TelRecord> selectPageByCid(int page,int limit,String cid);
+    Page<TelRecord> selectPageByCid(int page,int limit,String cid,String sort);
 }

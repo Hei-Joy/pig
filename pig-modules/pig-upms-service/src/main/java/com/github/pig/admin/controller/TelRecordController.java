@@ -43,8 +43,8 @@ public class TelRecordController extends BaseController {
      * @return
      */
     @GetMapping("/page")
-    public Page pageByCid(Integer page, Integer limit, String cid){
-        return telRecordService.selectPageByCid(page.intValue(),limit.intValue(),cid);
+    public Page pageByCid(Integer page, Integer limit, String cid,String sort){
+        return telRecordService.selectPageByCid(page.intValue(),limit.intValue(),cid,sort);
     }
 
     /**

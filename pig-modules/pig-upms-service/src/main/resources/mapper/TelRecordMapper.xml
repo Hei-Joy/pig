@@ -76,9 +76,15 @@
     </resultMap>
 
     <select id="selectPageByCid" resultType="com.github.pig.admin.model.entity.TelRecord">
-      <include refid="selectLibrary"/>
-      where cid = #{cid}
-        order BY  tel.inputtime desc
+        <include refid="selectLibrary"/>
+        where cid = #{cid}
+        <if test="sort =='DESC'">
+            ORDER BY  tel.inputtime  DESC
+        </if>
+        <if test="sort =='ASC'">
+            ORDER BY  tel.inputtime  ASC
+        </if>
+
         limit #{current},#{limit}
     </select>
 

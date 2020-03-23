@@ -24,10 +24,10 @@ public class TelRecordServiceImpl extends ServiceImpl<TelRecordMapper, TelRecord
     }
 
     @Override
-    public Page<TelRecord> selectPageByCid(int page, int limit, String cid) {
+    public Page<TelRecord> selectPageByCid(int page, int limit, String cid,String sort) {
         int current = (page -1 ) * limit;//获取当前第page页的第一条数据的下标
         Page<TelRecord> pages = new Page<>();
-        List<TelRecord> list =  telRecordMapper.selectPageByCid(current,limit,cid);
+        List<TelRecord> list =  telRecordMapper.selectPageByCid(current,limit,cid,sort);
         pages.setRecords(list);
         pages.setSize(limit);
         pages.setCurrent(page);
