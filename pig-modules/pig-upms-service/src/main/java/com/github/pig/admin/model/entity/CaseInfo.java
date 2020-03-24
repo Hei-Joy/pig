@@ -259,6 +259,8 @@ public class CaseInfo extends Model<CaseInfo> {
     private String casestatus;
     @TableField("BACKBALANCE")
     private String backbalance;
+    @TableField("OVERDUE")
+    private String overdue;
 
 
     public String getGuid() {
@@ -1173,6 +1175,14 @@ public class CaseInfo extends Model<CaseInfo> {
         this.backbalance = backbalance;
     }
 
+    public String getOverdue() {
+        return overdue;
+    }
+
+    public void setOverdue(String overdue) {
+        this.overdue = overdue;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.guid;
@@ -1295,6 +1305,7 @@ public class CaseInfo extends Model<CaseInfo> {
         ", attribute20=" + attribute20 +
         ", casestatus=" + casestatus +
         ", backbalance=" + backbalance +
+        ", overdue=" + overdue +
         "}";
     }
 }

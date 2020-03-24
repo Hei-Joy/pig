@@ -29,4 +29,6 @@ public interface ICaseInfoService extends IService<CaseInfo> {
     Page<CaseInfo> selectPageNoKey(int page,int limit,int userId,String bankname,String batchno,String ownerid,String batchnoType,String certno,String sort);
 
    int selectCountbatchNo(String batchNo);
+
+    void timingUpdate();
 }

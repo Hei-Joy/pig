@@ -18,5 +18,5 @@ public interface TelRecordMapper extends BaseMapper<TelRecord> {
 
     List<TelRecord> selectPageByCid(@Param("current") int current,@Param("limit") int limit,@Param("cid") String cid,@Param("sort")String sort);
 
-
+    List<TelRecord> selectTop1ByTelTime(String cid);
 }

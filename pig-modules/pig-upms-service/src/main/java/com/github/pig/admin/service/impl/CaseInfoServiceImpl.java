@@ -1,13 +1,21 @@
 package com.github.pig.admin.service.impl;
 import com.baomidou.mybatisplus.mapper.SqlHelper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.github.pig.admin.common.util.Tool;
+import com.github.pig.admin.mapper.TelRecordMapper;
 import com.github.pig.admin.model.dto.CaseDTO;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.mapper.CaseInfoMapper;
+import com.github.pig.admin.model.entity.TelRecord;
 import com.github.pig.admin.service.ICaseInfoService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -21,6 +29,9 @@ import org.springframework.stereotype.Service;
 public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> implements ICaseInfoService {
     @Autowired
     private CaseInfoMapper caseInfoMapper;
+
+    @Autowired
+    private TelRecordMapper telRecordMapper;
 
     public boolean inserCaseInfo(CaseInfo caseInfo){
         return SqlHelper.delBool(caseInfoMapper.inserCaseInfo(caseInfo));
@@ -69,6 +80,60 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
     public int selectCountbatchNo(String batchNo) {
         return  caseInfoMapper.selectCountbatchNo(batchNo);
 
+    }
+
+    /**
+     * 定时更新是否催收
+     */
+    @Override
+    public void timingUpdate() {
+        SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        //获取案件信息集合
+        List<CaseInfo> caseInfos = caseInfoMapper.selectList(null);
+        //判断集合是否为空
+        if(null != caseInfos && !caseInfos.isEmpty()){
+            //遍历
+            caseInfos.forEach(caseInfo -> {
+                //获取最近每个案件信息的一条联系人通过记录
+                List<TelRecord> telRecords = telRecordMapper.selectTop1ByTelTime(caseInfo.getGuid());
+                //判断集合是否为空
+                    if(null != telRecords && !telRecords.isEmpty()){
+                        //遍历
+                        telRecords.forEach(telRecord -> {
+                            System.out.println("--------------------");
+                            System.out.println(telRecord.getTeltime());
+                            Date date = null;
+                            try {
+                                date = sdf.parse(telRecord.getTeltime());
+                                System.out.println(date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            //判断是否符合催收
+                            int i = this.differentDaysByMillisecond(new Date(), date);
+                            System.out.println(i);
+                            caseInfo.setOverdue(String.valueOf(i));
+                            //更新案件信息集合
+                            caseInfoMapper.updateById(caseInfo);
+                        });
+                    }else{
+                        //未查询通话记录，直接显示2：未催收
+                        caseInfo.setOverdue("2");
+                        caseInfoMapper.updateById(caseInfo);
+                    }
+            });
+        }
+    }
+
+    /**
+     * 通过时间秒毫秒数判断两个时间的间隔
+     * @param now
+     * @param old
+     * @return
+     */
+    public static int differentDaysByMillisecond(Date now, Date old) {
+        //最近通话时间时间是否大于两天,1：小于两天，2：代表大于两天,未催收
+        return (now.getTime() - old.getTime()) < (1000*3600*24*2) ? 1 : 2;
     }
 
     private Page<CaseInfo> buildPage(int page ,int limit){

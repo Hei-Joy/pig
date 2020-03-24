@@ -91,4 +91,14 @@
     <select id="selectCount" parameterType="String" resultType="int">
       select count(*) from tel_record where cid =#{cid}
     </select>
+
+    <select id="selectTop1ByTelTime" parameterType="string" resultType="com.github.pig.admin.model.entity.TelRecord">
+        SELECT
+          DATE_FORMAT (TELTIME, '%Y-%m-%d %H:%i:%s') TELTIME
+        FROM
+          tel_record
+        WHERE cid = #{cid}
+        ORDER BY DATE_FORMAT (TELTIME, '%Y-%m-%d %H:%i:%s') DESC
+        LIMIT 0, 1
+    </select>
 </mapper>

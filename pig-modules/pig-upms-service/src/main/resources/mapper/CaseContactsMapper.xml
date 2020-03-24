@@ -19,4 +19,6 @@
         <result column="EMAIL" jdbcType="VARCHAR" property="email" />
         <result column="REMARK" jdbcType="VARCHAR" property="remark" />
     </resultMap>
+
+
 </mapper>
