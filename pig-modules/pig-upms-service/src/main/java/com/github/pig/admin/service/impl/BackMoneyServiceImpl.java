@@ -36,7 +36,7 @@ public class BackMoneyServiceImpl extends ServiceImpl<BackMoneyMapper, BackMoney
     public Page<CaseInfo> selectPage(int page, int limit, String bankname, String batchno, String ownerid) {
         int current = (page - 1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(backMoneyMapper.selectCountNoKey( bankname,batchno,ownerid));
+        pages.setTotal(backMoneyMapper.selectSum(bankname,batchno,ownerid));
         pages.setRecords(backMoneyMapper.selectPage(current,limit, bankname,batchno,ownerid));
         pages.getPages();
         System.out.println(pages);

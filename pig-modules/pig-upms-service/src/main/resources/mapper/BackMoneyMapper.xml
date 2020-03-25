@@ -54,7 +54,23 @@
             and c.batchno = #{batchno}
         </if>
         <if test="bankname != null and bankname != ''">
-            and c.bankname = #{bankname}
+            and m.name LIKE CONCAT('%',#{bankname},'%')
+        </if>
+    </select>
+
+    <select id="selectSum" resultType="integer">
+        SELECT COUNT(*)
+        FROM case_info c
+        RIGHT JOIN back_money m ON m.cid=c.guid
+        WHERE 1=1   AND   m.cid=c.guid
+        <if test="ownerid != null and ownerid != ''">
+            and c.ownerid = #{ownerid}
+        </if>
+        <if test="batchno != null and batchno != ''">
+            and c.batchno = #{batchno}
+        </if>
+        <if test="bankname != null and bankname != ''">
+            and m.name LIKE CONCAT('%',#{bankname},'%')
         </if>
     </select>
 
