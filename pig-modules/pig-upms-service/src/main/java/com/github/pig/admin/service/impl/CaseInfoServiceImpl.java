@@ -81,6 +81,14 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
         return  caseInfoMapper.selectCountbatchNo(batchNo);
 
     }
+/*
+修改催收人
+ */
+    @Override
+    public int  updateUser(String id,String ownerId) {
+
+        return caseInfoMapper.updateByUserId(id,ownerId);
+    }
 
     /**
      * 定时更新是否催收

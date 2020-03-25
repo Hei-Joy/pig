@@ -41,8 +41,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -84,7 +86,16 @@ public class UserController extends BaseController {
     public UserVO user(@PathVariable Integer id) {
         return userService.selectUserVoById(id);
     }
-
+    /**
+     * 查询当前用户姓名和id
+     *
+     * @return 用户信息
+     */
+    @GetMapping("/all")
+    public List<SysUser> userAllName() {
+        System.out.println(userService.selectUserVoAllName());
+        return userService.selectUserVoAllName();
+    }
     /**
      * 删除用户信息
      *

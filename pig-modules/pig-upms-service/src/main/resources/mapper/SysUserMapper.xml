@@ -123,6 +123,15 @@
         WHERE
            `user`.user_id = #{id}
     </select>
+    <select id="selectUserVoAllName" resultMap="BaseResultMap">
+         SELECT
+             `user`.user_id,
+            `user`.username
+
+        FROM
+            sys_user AS `user`
+
+    </select>
 
     <select id="selectUserVoPageDataScope" resultMap="userVoResultMap" >
         SELECT

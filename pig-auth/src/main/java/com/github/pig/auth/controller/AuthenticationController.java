@@ -38,7 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/authentication")
 public class AuthenticationController {
     @Autowired
-    @Qualifier("consumerTokenServices")
+    @Qualifier("consumerTokenServices")//合格者
     private ConsumerTokenServices consumerTokenServices;
 
     /**

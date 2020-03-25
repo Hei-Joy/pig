@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.pig.admin.mapper.SysUserMapper;
 import com.github.pig.admin.model.dto.UserDTO;
+import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.model.entity.SysUser;
 import com.github.pig.admin.service.SysDeptRelationService;
 import com.github.pig.admin.service.SysMenuService;
@@ -157,6 +158,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public UserVO selectUserVoById(Integer id) {
         return sysUserMapper.selectUserVoById(id);
+    }
+
+    @Override
+    public List<SysUser> selectUserVoAllName() {
+        return sysUserMapper.selectUserVoAllName();
     }
 
     /**

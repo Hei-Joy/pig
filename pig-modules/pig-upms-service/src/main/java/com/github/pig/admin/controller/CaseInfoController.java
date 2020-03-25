@@ -83,6 +83,7 @@ public class CaseInfoController extends BaseController {
         if("1".equals(isMine)){
             ownerid = UserUtils.getUser();
         }
+
         if(StringUtils.isBlank(key)){
             return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
         }
@@ -110,9 +111,7 @@ public class CaseInfoController extends BaseController {
     public Page distributionCase(@RequestBody CaseInfo caseInfo1){
         String batchNo = caseInfo1.getBatchno();
 
-
         //每人多少案件
-
 
         //按照部门
         String deptId = caseInfo1.getDeptname();
@@ -212,6 +211,14 @@ public class CaseInfoController extends BaseController {
     public R<Boolean> edit(@RequestBody CaseInfo caseInfo) {
        // caseInfo.setUpdateTime(new Date());
         return new R<>(caseInfoService.updateById(caseInfo));
+    }
+    @PutMapping("/updateOwnerId")
+    public  int updateOwnerId(String id,String ownerId){
+System.out.println(!id.equals(null)+""+!ownerId.equals(null));
+        if(id!=" "&ownerId!=" "){
+            return caseInfoService.updateUser(id,ownerId);
+        }
+        return 0;
     }
 
 //    @PostMapping

@@ -420,5 +420,12 @@
 
         limit #{current},#{limit}
     </select>
+    <update id="updateByUserId" parameterType="java.lang.Integer" >
+        update  case_info
+        <set>
+                OWNERID=#{ownerId}
+        </set>
+        WHERE GUID=#{userId}
+    </update>
 
 </mapper>

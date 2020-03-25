@@ -34,4 +34,5 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
     Integer selectCountNoKey(@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
 
     List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort);
+    int updateByUserId(@Param("userId") String userId,@Param("ownerId") String ownerId);
 }

@@ -18,9 +18,11 @@
 package com.github.pig.admin.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.model.entity.SysUser;
 import com.github.pig.common.bean.interceptor.DataScope;
 import com.github.pig.common.util.Query;
+import com.github.pig.common.util.R;
 import com.github.pig.common.vo.UserVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -76,4 +78,11 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return userVo
      */
     UserVO selectUserVoById(Integer id);
+    /*
+     *查询所有用户name和id
+     *
+     * @return userVo
+     */
+
+    List<SysUser> selectUserVoAllName();
 }
