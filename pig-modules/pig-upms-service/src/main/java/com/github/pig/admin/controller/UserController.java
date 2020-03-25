@@ -185,7 +185,7 @@ public class UserController extends BaseController {
      * @return 用户集合
      */
     @RequestMapping("/userPage")
-    public Page userPage(@RequestParam Map<String, Object> params, UserVO userVO) {
+    public Page userPage(@RequestParam Map<String, Object> params,@RequestParam UserVO userVO) {
         return userService.selectWithRolePage(new Query(params), userVO);
     }
 
