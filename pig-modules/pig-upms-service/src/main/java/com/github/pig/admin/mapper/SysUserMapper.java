@@ -52,6 +52,13 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username  用户名
      * @param dataScope 数据权限
      * @return list
+     * ,@Param("phone") String phone,@Param("userId")String userId
+     *  <if test="phone !=null and phone != ''">
+     *                 and `user`'.phone LIKE CONCAT('%',#{phone},'%')
+     *             </if>
+     *             <if test="userId !=null and userId != ''">
+     *                 and `user`.user_id LIKE CONCAT('%',#{userId},'%')
+     *             </if>
      */
     List selectUserVoPageDataScope(Query query, @Param("username") Object username, DataScope dataScope);
 
