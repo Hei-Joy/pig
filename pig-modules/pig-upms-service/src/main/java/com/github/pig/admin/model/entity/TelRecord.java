@@ -16,7 +16,7 @@ public class TelRecord {
 
     private String cid;
 
-    private String teltime;
+    private String teltime;//记录时间
 
     private String cname;
 
