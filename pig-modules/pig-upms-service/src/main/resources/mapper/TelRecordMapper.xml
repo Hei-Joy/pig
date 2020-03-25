@@ -79,10 +79,10 @@
         <include refid="selectLibrary"/>
         where cid = #{cid}
         <if test="sort =='DESC'">
-            ORDER BY  CAST(tel.TELTIME AS DATETIME)  DESC
+            ORDER BY  CAST(tel.INPUTTIME AS DATETIME)  DESC
         </if>
         <if test="sort =='ASC'">
-            ORDER BY  CAST(tel.TELTIME AS DATETIME)  ASC
+            ORDER BY  CAST(tel.INPUTTIME AS DATETIME)  ASC
         </if>
 
         limit #{current},#{limit}
