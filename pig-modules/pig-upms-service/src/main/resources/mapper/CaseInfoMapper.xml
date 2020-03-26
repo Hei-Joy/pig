@@ -219,9 +219,7 @@
         LEFT JOIN case_contacts b ON a.GUID = b.CID
         WHERE 1=1 AND bankname = #{bankname}
 
-        AND
-        a.NAME
-        LIKE CONCAT('%',#{keyWord},'%')
+
         <if test="ownerid != null and ownerid != ''">
             and a.ownerid = #{ownerid}
         </if>
@@ -232,10 +230,12 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno =LIKE CONCAT('%',#{certno},'%')
+            and a.certno LIKE CONCAT('%',#{certno},'%')
         </if>
 
-
+        AND
+        a.NAME
+        LIKE CONCAT('%',#{keyWord},'%')
 
         <if test = "sort == 'DESC' ">
             ORDER BY  CAST(balance AS DECIMAL) DESC
