@@ -152,4 +152,12 @@
           and c.bankname = #{bankname}
       </if>
   </select>
+
+  <select id="selectBackMoneyById" resultType="com.github.pig.admin.model.entity.BackMoney">
+    select name from back_money where cid = #{cid} limit #{page},#{limit}
+  </select>
+
+    <select id="selectBackMoneyByIdCount" parameterType="string" resultType="int">
+        select count(*) from back_money where cid = #{cid}
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.github.pig.admin.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.model.entity.BackMoney;
 import com.github.pig.admin.model.entity.CaseInfo;
@@ -32,5 +33,12 @@ public class BackMoneyController {
 //                    }
 //            return  backMoneyService.selectPageByKey(page,limit,key,bankname,batchno,ownerid);
     }
+
+    @GetMapping("/getBackMoneyById")
+    public Page<BackMoney> getBackMoneyById(int page, int limit,String cid){
+        return backMoneyService.getBackMoneyById(page, limit, cid);
+    }
+
+
 
 }
