@@ -26,9 +26,9 @@ public class CaseInfo extends Model<CaseInfo> {
     @TableField("INPUTTIME")
     private String inputtime;
     @TableField("BATCHNO")
-    private String batchno;
+    private String batchno;//批号
     @TableField("BATCHNOTYPE")
-    private String batchnoType;
+    private String batchnoType;//批号类型
     @TableField("BANKID")
     private String bankid;
     @TableField("BANKNAME")
@@ -50,7 +50,7 @@ public class CaseInfo extends Model<CaseInfo> {
     @TableField("SEX")
     private String sex;
     @TableField("CERTNO")
-    private String certno;
+    private String certno;//身份证
     @TableField("QQ")
     private String qq;
     @TableField("WEIXIN")

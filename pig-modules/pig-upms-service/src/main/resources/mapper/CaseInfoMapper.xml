@@ -210,6 +210,7 @@
 	        a.GUID = #{guid}
 	        ORDER BY b.INPUTTIME DESC limit 1
     </select>
+
     <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
         a.*
@@ -219,18 +220,8 @@
         WHERE 1=1 AND bankname = #{bankname}
 
         AND
-        CONCAT_WS(
-        IFNULL(a.ADDR,'无'),
-        IFNULL(a.`NAME`,'无'),
-        IFNULL(a.MOBILE,'无'),
-        IFNULL(a.DEPTNAME,'无'),
-        IFNULL(a.HOMEADDR,'无'),
-        IFNULL(a.CERTNO,'无'),
-        IFNULL(a.CARDNO,'无'),
-        IFNULL(b.CELLPHONE,'无'),
-        IFNULL(b.`NAME`,'无'),
-        IFNULL(b.REMARK,'无')
-        ) LIKE CONCAT('%',#{keyWord},'%')
+        a.NAME
+        LIKE CONCAT('%',#{keyWord},'%')
         <if test="ownerid != null and ownerid != ''">
             and a.ownerid = #{ownerid}
         </if>
@@ -342,7 +333,7 @@
             case_info a
         LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
         WHERE
-            `NAME` LIKE CONCAT('%', '王', '%')
+            `NAME` LIKE CONCAT('%', #{name}, '%')
         AND
             b.dept_id = (
                 SELECT
@@ -377,7 +368,6 @@
             count(*)
         FROM
             case_info a
-
         WHERE  1=1 AND bankname = #{bankname}
         <if test="ownerid != null and ownerid != ''">
             and a.ownerid = #{ownerid}
