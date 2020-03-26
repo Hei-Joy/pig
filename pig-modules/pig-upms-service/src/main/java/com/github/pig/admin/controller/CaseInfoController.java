@@ -86,10 +86,8 @@ public class CaseInfoController extends BaseController {
         }
 
         if(StringUtils.isBlank(key)){
-System.out.println(2);
             return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
         }
-        System.out.println(1);
         return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
     }
 
@@ -215,7 +213,7 @@ System.out.println(2);
        // caseInfo.setUpdateTime(new Date());
         return new R<>(caseInfoService.updateById(caseInfo));
     }
-    @PutMapping("/updateOwnerId")
+    @GetMapping("/updateOwnerId")
     public  int updateOwnerId(String id,String ownerId){
 System.out.println(!id.equals(null)+""+!ownerId.equals(null));
         if(id!=" "&ownerId!=" "){
