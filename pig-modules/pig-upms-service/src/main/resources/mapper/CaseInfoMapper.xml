@@ -235,14 +235,15 @@
             and a.certno =LIKE CONCAT('%',#{certno},'%')
         </if>
 
-        GROUP BY a.guid
-        limit #{current},#{limit}
+
+
         <if test = "sort == 'DESC' ">
             ORDER BY  CAST(balance AS DECIMAL) DESC
         </if>
         <if test = "sort == 'ASC' ">
             ORDER BY  CAST(balance AS DECIMAL) ASC
         </if>
+        limit #{current},#{limit}
 
 
     </select>
