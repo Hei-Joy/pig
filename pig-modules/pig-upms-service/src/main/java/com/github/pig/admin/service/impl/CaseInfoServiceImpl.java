@@ -44,8 +44,7 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
 
     @Override
     public Page<CaseInfo> selectPageByKey(int page,int limit,String key,int userId, String bankname,String batchno,String ownerid,String batchnoType,String certno,String sort) {
-        System.out.println(page+","+limit+","+key+userId+","+bankname+","+batchno+","+ownerid+","+batchnoType+","+certno);
-        int current = (page -1) * limit;
+         int current = (page -1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
         pages.setTotal(caseInfoMapper.selectCount(key,userId,bankname,batchno,ownerid,batchnoType,certno));//设置符合条件的所有记录
         pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key, userId,bankname,batchno,ownerid,batchnoType,certno,sort));
