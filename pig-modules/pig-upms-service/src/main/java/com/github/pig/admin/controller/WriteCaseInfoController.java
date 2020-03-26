@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +27,29 @@ public class WriteCaseInfoController {
     @Autowired
     private WriteeCaseInfoService writeeCaseInfoService;
 
-    @PostMapping("/Write")
-    public void writeExcel1() throws Exception {
-        // 文件输出位置
-        OutputStream out = new FileOutputStream("D:/test.xlsx");
+    @PostMapping("/write")
+    public void writeExcel1(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String path="借款人员信息表.xlsx";
 
-        ExcelWriter writer = EasyExcelFactory.getWriter(out);
+        /*response.setContentType("application/vnd.ms-excel; charset=utf-8");//自定义路径
+        response.setHeader("Content-disposition", "attachment;filename="+new String((path).getBytes(), "iso-8859-1"));
+        OutputStream out=null;
+        out = response.getOutputStream();*/
+
+        ExcelWriter writer=null;
+
+        FileOutputStream sout = null;//导出到桌面
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        File com=fsv.getHomeDirectory(); //这便是读取桌面路径的方法了
+
+        sout=new FileOutputStream(com.getPath()+"\\"+ path);
+        OutputStream out = sout;
+        writer = EasyExcelFactory.getWriter(out);
+
+        // 文件输出位置
+        //OutputStream out = new FileOutputStream("D:/借款信息表.xlsx");
+
+        //ExcelWriter writer = EasyExcelFactory.getWriter(out);
 
         // 写仅有一个 Sheet 的 Excel 文件, 此场景较为通用
         Sheet sheet1 = new Sheet(1, 0, WriteCaseInfo.class);
