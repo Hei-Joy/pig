@@ -117,7 +117,7 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            //判断是否符合催收
+                            //未跟进天数
                             int i = this.differentDaysByMillisecond(new Date(), date);
                             System.out.println(i);
                             caseInfo.setOverdue(String.valueOf(i));
@@ -126,7 +126,7 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
                         });
                     }else{
                         //未查询通话记录，直接显示2：未催收
-                        caseInfo.setOverdue("2");
+                        caseInfo.setOverdue("-1");
                         caseInfoMapper.updateById(caseInfo);
                     }
             });
@@ -140,8 +140,8 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
      * @return
      */
     public static int differentDaysByMillisecond(Date now, Date old) {
-        //最近通话时间时间是否大于两天,1：小于两天，2：代表大于两天,未催收
-        return (now.getTime() - old.getTime()) < (1000*3600*24*2) ? 1 : 2;
+        //返回当前时间和最近通话时间间隔天数
+        return (int) ((now.getTime() - old.getTime()) / (1000*3600*24));
     }
 
     private Page<CaseInfo> buildPage(int page ,int limit){

@@ -58,6 +58,7 @@ public class TelRecordController extends BaseController {
         String cid = telRecord.getCid();
         CaseInfo caseInfo = caseInfoService.selectById(cid);
         caseInfo.setAttribute1(telRecord.getAttitude());
+        caseInfo.setOverdue("0");
         caseInfoService.updateById(caseInfo);
 
         telRecord.setGuid(Tool.getUUid());//设置主键
