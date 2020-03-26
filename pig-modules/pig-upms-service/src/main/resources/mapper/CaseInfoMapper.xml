@@ -310,7 +310,7 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno LIKE CONCAT('%',#{certno},'%')
+            and a.certno = #{certno}
         </if>
     </select>
 
@@ -349,7 +349,7 @@
             case_info a
         LEFT JOIN sys_user b ON a.OWNERID = b.old_user_id
         WHERE
-            `NAME` LIKE CONCAT('%', '王', '%')
+            `NAME` LIKE CONCAT('%', #{name}, '%')
         AND
             b.dept_id = (
                 SELECT
@@ -377,7 +377,7 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno LIKE CONCAT('%',#{certno},'%')
+            and a.certno = #{certno}
         </if>
     </select>
 
