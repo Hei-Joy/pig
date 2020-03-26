@@ -310,7 +310,7 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno =LIKE CONCAT('%',#{certno},'%')
+            and a.certno LIKE CONCAT('%',#{certno},'%')
         </if>
     </select>
 
@@ -377,7 +377,7 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno =LIKE CONCAT('%',#{certno},'%')
+            and a.certno LIKE CONCAT('%',#{certno},'%')
         </if>
     </select>
 
@@ -397,7 +397,7 @@
             and a.batchnoType = #{batchnoType}
         </if>
         <if test="certno != null and certno != ''">
-            and a.certno =LIKE CONCAT('%',#{certno},'%')
+            and a.certno = #{certno}
         </if>
         <if test = "sort == 'DESC' ">
             ORDER BY  CAST(balance AS DECIMAL) DESC
