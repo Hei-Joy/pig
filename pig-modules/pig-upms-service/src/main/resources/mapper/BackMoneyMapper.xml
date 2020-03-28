@@ -45,8 +45,8 @@
     <select id="selectPage" resultType="com.github.pig.admin.model.entity.CaseInfo">
         select c.guid,m.name,c.batchno ,c.bankname,c.cardno,c.certno,c.addr,c.mobile,c.balance,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
         from case_info c
-        right join back_money m on m.cid=c.guid
-        where 1=1   and   m.cid=c.guid
+        right join back_money m on m.CARDNO=c.CARDNO
+        where 1=1   and   m.CARDNO=c.CARDNO
         <if test="ownerid != null and ownerid != ''">
             and c.ownerid = #{ownerid}
         </if>
@@ -61,8 +61,8 @@
     <select id="selectSum" resultType="integer">
         SELECT COUNT(*)
         FROM case_info c
-        RIGHT JOIN back_money m ON m.cid=c.guid
-        WHERE 1=1   AND   m.cid=c.guid
+        RIGHT JOIN back_money m ON m.CARDNO=c.CARDNO
+        WHERE 1=1   AND   m.CARDNO=c.CARDNO
         <if test="ownerid != null and ownerid != ''">
             and c.ownerid = #{ownerid}
         </if>
@@ -154,10 +154,10 @@
   </select>
 
   <select id="selectBackMoneyById" resultType="com.github.pig.admin.model.entity.BackMoney">
-    select name from back_money where cid = #{cid} limit #{page},#{limit}
+    select name from back_money where CARDNO = #{cardno} limit #{page},#{limit}
   </select>
 
     <select id="selectBackMoneyByIdCount" parameterType="string" resultType="int">
-        select count(*) from back_money where cid = #{cid}
+        select count(*) from back_money where CARDNO = #{cardno}
     </select>
 </mapper>
