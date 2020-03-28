@@ -2,16 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.pig.admin.mapper.WriteCaseInfoMapper">
     <select id="WriteQuery" parameterType="string" resultType="com.github.pig.admin.model.entity.WriteCaseInfo">
-          SELECT c.BATCHNOTYPE,c.`NAME`,c.CLOSEDATE,c.BANKNAME,c.CARDNO,c.CERTNO,c.HOMEADDR,c.BALANCE,c.MOBILE,c.OWNERID
-          FROM `case_info` c where 1 = 1
+        SELECT  c.BATCHNOTYPE,c.`NAME`,c.BATCHNO,c.BANKNAME,c.CARDNO,c.CERTNO,c.HOMEADDR,c.BALANCE,c.MOBILE,c.OWNERID FROM `case_info` c where 1 = 1
             <if test="bankname != null and bankname != ''">
                 and c.bankname = #{bankname}
             </if>
             <if test="name != null and name != ''">
-                and c.name = #{name}
+                and c.name LIKE CONCAT('%',#{name},'%')
             </if>
-            <if test="closedate != null and closedate != ''">
-                and c.closedate = #{closedate}
+            <if test="batchno != null and batchno != ''">
+                and c.batchno LIKE CONCAT('%',#{batchno},'%')
             </if>
             <if test="ownerid != null and ownerid != ''">
                 and c.ownerid = #{ownerid}

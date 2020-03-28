@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface WriteCaseInfoMapper  {
 
-    List<WriteCaseInfo> WriteQuery(@Param("bankname") String bankname,@Param("name") String name,@Param("closedate") String closedate,@Param("ownerid") String ownerid,@Param("batchnotype") String batchnotype,@Param("certno") String certno);
+    List<WriteCaseInfo> WriteQuery(@Param("bankname") String bankname,@Param("name") String name,@Param("batchno") String batchno,@Param("ownerid") String ownerid,@Param("batchnotype") String batchnotype,@Param("certno") String certno);
 }

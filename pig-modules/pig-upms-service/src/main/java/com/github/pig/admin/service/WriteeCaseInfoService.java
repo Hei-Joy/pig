@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface WriteeCaseInfoService  {
 
-    List<WriteCaseInfo> WriteQuery(String bankname,String name,String closedate,String ownerid,String batchnotype,String certno);
+    List<WriteCaseInfo> WriteQuery(String bankname,String name,String batchno,String ownerid,String batchnotype,String certno);
 
 }

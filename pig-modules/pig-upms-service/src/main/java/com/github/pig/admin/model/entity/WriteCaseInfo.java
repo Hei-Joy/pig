@@ -19,7 +19,7 @@ public class WriteCaseInfo extends BaseRowModel {
     private String NAME;
 
     @ExcelProperty(value = "批次", index = 2)
-    private String CLOSEDATE;
+    private String BATCHNO;
 
     @ExcelProperty(value = "银行", index = 3)
     private String BANKNAME;
@@ -34,7 +34,7 @@ public class WriteCaseInfo extends BaseRowModel {
     private String HOMEADDR;
 
     @ExcelProperty(value = "欠款", index = 7)
-    private String ATTRIBUTE14;
+    private String BALANCE;
 
     @ExcelProperty(value = "移动电话", index = 8)
     private String MOBILE;

@@ -17,8 +17,8 @@ public class WriteCaseInfoServicelmpl implements WriteeCaseInfoService {
     @Autowired
     private WriteCaseInfoMapper writeCaseInfoMapper;
     @Override
-    public List<WriteCaseInfo> WriteQuery(String bankname,String name,String closedate,String ownerid,String batchnotype,String certno) {
-        return writeCaseInfoMapper.WriteQuery(bankname,name,closedate,ownerid,batchnotype,certno);
+    public List<WriteCaseInfo> WriteQuery(String bankname,String name,String batchno,String ownerid,String batchnotype,String certno) {
+        return writeCaseInfoMapper.WriteQuery(bankname,name,batchno,ownerid,batchnotype,certno);
     }
 
 }
