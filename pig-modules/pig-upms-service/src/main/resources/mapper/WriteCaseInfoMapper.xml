@@ -7,5 +7,20 @@
             <if test="bankname != null and bankname != ''">
                 and c.bankname = #{bankname}
             </if>
+            <if test="name != null and name != ''">
+                and c.name = #{name}
+            </if>
+            <if test="closedate != null and closedate != ''">
+                and c.closedate = #{closedate}
+            </if>
+            <if test="ownerid != null and ownerid != ''">
+                and c.ownerid = #{ownerid}
+            </if>
+            <if test="batchnotype != null and batchnotype != ''">
+                and c.batchnotype = #{batchnotype}
+            </if>
+            <if test="certno != null and certno != ''">
+                and c.certno = #{certno}
+        </if>
     </select>
 </mapper>

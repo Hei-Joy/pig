@@ -1,6 +1,5 @@
 package com.github.pig.admin.controller;
 
-import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
@@ -8,13 +7,13 @@ import com.github.pig.admin.model.entity.WriteCaseInfo;
 import com.github.pig.admin.service.WriteeCaseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/caseInfo")
@@ -24,7 +23,7 @@ public class WriteCaseInfoController {
 
 
     @GetMapping("/write")
-    public void writeExcel1(HttpServletResponse response,String bankname) throws Exception {
+    public void writeExcel1(HttpServletResponse response,String bankname,String name,String closedate,String ownerid,String batchnotype,String certno) throws Exception {
         String path="借款人员信息表";
 
         OutputStream out = response.getOutputStream();
@@ -40,7 +39,7 @@ public class WriteCaseInfoController {
         // 写数据到 Writer 上下文中
         // 入参1: 创建要写入的模型数据
         // 入参2: 要写入的目标 sheet
-        writer.write(writeeCaseInfoService.WriteQuery(bankname), sheet1);
+        writer.write(writeeCaseInfoService.WriteQuery(bankname,name,closedate,ownerid,batchnotype,certno), sheet1);
 
         // 将上下文中的最终 outputStream 写入到指定文件中
         writer.finish();
