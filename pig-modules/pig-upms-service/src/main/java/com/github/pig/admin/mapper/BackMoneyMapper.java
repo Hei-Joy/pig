@@ -24,7 +24,7 @@ public interface BackMoneyMapper extends BaseMapper<BackMoney> {
 
     Integer selectSum( @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid);
 
-    List<BackMoney> selectBackMoneyById(@Param("page") int page,@Param("limit") int limit,@Param("cid") String cid);
+    List<BackMoney> selectBackMoneyById(@Param("page") int page,@Param("limit") int limit,@Param("cardno") String cardno);
 
     int selectBackMoneyByIdCount(String cid);
 }

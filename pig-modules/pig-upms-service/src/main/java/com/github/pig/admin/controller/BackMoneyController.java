@@ -35,8 +35,8 @@ public class BackMoneyController {
     }
 
     @GetMapping("/getBackMoneyById")
-    public Page<BackMoney> getBackMoneyById(int page, int limit,String cid){
-        return backMoneyService.getBackMoneyById(page, limit, cid);
+    public Page<BackMoney> getBackMoneyById(int page, int limit,String cardno){
+        return backMoneyService.getBackMoneyById(page, limit, cardno);
     }
 
 

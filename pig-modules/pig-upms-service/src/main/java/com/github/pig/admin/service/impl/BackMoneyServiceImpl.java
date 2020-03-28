@@ -49,10 +49,10 @@ public class BackMoneyServiceImpl extends ServiceImpl<BackMoneyMapper, BackMoney
     }
 
     @Override
-    public Page<BackMoney> getBackMoneyById(int page, int limit, String cid) {
+    public Page<BackMoney> getBackMoneyById(int page, int limit, String cardno) {
         Page<BackMoney> pages = new Page<>(page,limit);
-        pages.setTotal(baseMapper.selectBackMoneyByIdCount(cid));
-        pages.setRecords(backMoneyMapper.selectBackMoneyById(page, limit, cid));
+        pages.setTotal(baseMapper.selectBackMoneyByIdCount(cardno));
+        pages.setRecords(backMoneyMapper.selectBackMoneyById(page, limit, cardno));
         return pages;
     }
 
