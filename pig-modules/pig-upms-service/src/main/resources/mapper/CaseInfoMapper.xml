@@ -216,7 +216,7 @@
         a.*
         FROM
         case_info a
-        LEFT JOIN case_contacts b ON a.GUID = b.CID
+--         LEFT JOIN case_contacts b ON a.GUID = b.CID
         WHERE 1=1 AND bankname = #{bankname}
 
         <if test="ownerid != null and ownerid != ''">

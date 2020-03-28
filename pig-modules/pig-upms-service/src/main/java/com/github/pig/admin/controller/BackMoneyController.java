@@ -1,12 +1,9 @@
 package com.github.pig.admin.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.model.entity.BackMoney;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.BackMoneyService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +32,7 @@ public class BackMoneyController {
     }
 
     @GetMapping("/getBackMoneyById")
-    public Page<BackMoney> getBackMoneyById(int page, int limit,String cardno){
+    public Page<BackMoney> getBackMoneyById(int page, int limit, String cardno){
         return backMoneyService.getBackMoneyById(page, limit, cardno);
     }
 
