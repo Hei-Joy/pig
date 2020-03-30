@@ -14,7 +14,7 @@ public interface BackMoneyService extends IService<BackMoney> {
 
     Page<CaseInfo> selectPageByKey(int page, int limit, String key, String bankname, String batchno, String ownerid);
 
-    Page<CaseInfo> selectPage(int page, int limit, String bankname, String batchno, String ownerid);
+    Page<CaseInfo> selectPage(int page, int limit, String bankname, String batchno, String ownerid,String frontTime,String rearTime);
 
     Page<BackMoney> getBackMoneyById(int page, int limit, String cardno);
 }

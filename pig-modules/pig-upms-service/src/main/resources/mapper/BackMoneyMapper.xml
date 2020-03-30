@@ -54,7 +54,10 @@
             and c.batchno = #{batchno}
         </if>
         <if test="bankname != null and bankname != ''">
-            and m.name LIKE CONCAT('%',#{bankname},'%')
+            and CONCAT(c.`NAME`,c.CARDNO,c.CERTNO,c.MOBILE,c.HOMEADDR) LIKE CONCAT('%',#{bankname},'%')
+        </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and c.inputtime BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 
@@ -70,7 +73,10 @@
             and c.batchno = #{batchno}
         </if>
         <if test="bankname != null and bankname != ''">
-            and m.name LIKE CONCAT('%',#{bankname},'%')
+            and CONCAT(c.`NAME`,c.CARDNO,c.CERTNO,c.MOBILE,c.HOMEADDR) LIKE CONCAT('%',#{bankname},'%')
+        </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and c.inputtime BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 

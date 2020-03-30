@@ -23,10 +23,10 @@ public class BackMoneyController {
     }
 
     @RequestMapping("/page")
-    public Page<CaseInfo> page(int page, int limit,String key, String batchno, String ownerid){
+    public Page<CaseInfo> page(int page, int limit,String key, String batchno, String ownerid,String frontTime,String rearTime){
         //if(StringUtils.isBlank(bankname)){
 
-            return backMoneyService.selectPage(page,limit,key,batchno,ownerid);
+            return backMoneyService.selectPage(page,limit,key,batchno,ownerid,frontTime,rearTime);
 //                    }
 //            return  backMoneyService.selectPageByKey(page,limit,key,bankname,batchno,ownerid);
     }
