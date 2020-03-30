@@ -1,6 +1,5 @@
 package com.github.pig.admin.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.github.pig.admin.model.entity.BackMoney;
 import com.github.pig.admin.model.entity.CaseInfo;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +23,7 @@ public interface BackMoneyMapper extends BaseMapper<BackMoney> {
 
     Integer selectSum( @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid);
 
-    List<BackMoney> selectBackMoneyById(@Param("page") int page,@Param("limit") int limit,@Param("cardno") String cardno);
-
     int selectBackMoneyByIdCount(String cid);
+
+    List<BackMoney> selectBackMoneyById(@Param("current")int current,@Param("limit") int limit,@Param("cardno") String cardno);
 }

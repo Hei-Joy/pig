@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -55,12 +56,12 @@ public class TelRecordController extends BaseController {
     @PostMapping("/insert")
     public R<Boolean> add(@RequestBody TelRecord telRecord){
        //保存备注
+
         String cid = telRecord.getCid();
         CaseInfo caseInfo = caseInfoService.selectById(cid);
         caseInfo.setAttribute1(telRecord.getAttitude());
         caseInfo.setOverdue("0");
         caseInfoService.updateById(caseInfo);
-
         telRecord.setGuid(Tool.getUUid());//设置主键
         telRecord.setInputtime(Tool.getDate());//设置时间
         telRecord.setInputuserid(UserUtils.getUser());

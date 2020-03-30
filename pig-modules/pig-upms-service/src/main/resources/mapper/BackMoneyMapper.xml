@@ -43,7 +43,7 @@
     </select>
 
     <select id="selectPage" resultType="com.github.pig.admin.model.entity.CaseInfo">
-        select c.guid,m.name,c.batchno ,c.bankname,c.cardno,c.certno,c.addr,c.mobile,c.balance,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
+        select c.guid,m.name,c.batchno ,c.bankname,c.cardno,c.certno,c.homeaddr,c.mobile,c.balance,m.imptime as inputtime,m.inmoney as backbalance,c.ownerid
         from case_info c
         right join back_money m on m.CARDNO=c.CARDNO
         where 1=1   and   m.CARDNO=c.CARDNO
@@ -154,7 +154,7 @@
   </select>
 
   <select id="selectBackMoneyById" resultType="com.github.pig.admin.model.entity.BackMoney">
-    select name from back_money where CARDNO = #{cardno} limit #{page},#{limit}
+    select * from back_money where CARDNO = #{cardno} limit #{current},#{limit}
   </select>
 
     <select id="selectBackMoneyByIdCount" parameterType="string" resultType="int">

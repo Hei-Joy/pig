@@ -216,7 +216,7 @@
         a.*
         FROM
         case_info a
-        LEFT JOIN case_contacts b ON a.GUID = b.CID
+--         LEFT JOIN case_contacts b ON a.GUID = b.CID
         WHERE 1=1 AND bankname = #{bankname}
 
         <if test="ownerid != null and ownerid != ''">
@@ -233,7 +233,7 @@
         </if>
 
         AND
-        a.NAME LIKE CONCAT('%',#{keyWord},'%')
+        CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE) LIKE CONCAT('%',#{keyWord},'%')
         <if test = "sort == 'DESC' ">
             ORDER BY  CAST(balance AS DECIMAL) DESC
         </if>
@@ -342,6 +342,8 @@
         )
     </select>
 
+
+
     <select id="selectPageByName" resultType="com.github.pig.admin.model.entity.CaseInfo">
         SELECT
             a.*
@@ -360,6 +362,7 @@
         )
           limit #{current},#{limit}
     </select>
+
 
     <select id="selectCountNoKey"  resultType="java.lang.Integer">
         SELECT

@@ -1,18 +1,14 @@
 package com.github.pig.admin.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.pig.admin.mapper.BackMoneyMapper;
 import com.github.pig.admin.model.entity.BackMoney;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.github.pig.admin.service.BackMoneyService;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -50,9 +46,12 @@ public class BackMoneyServiceImpl extends ServiceImpl<BackMoneyMapper, BackMoney
 
     @Override
     public Page<BackMoney> getBackMoneyById(int page, int limit, String cardno) {
-        Page<BackMoney> pages = new Page<>(page,limit);
+        int current = (page -1) * limit;
+        Page<BackMoney> pages = new Page<>();
+        pages.setCurrent(page);
+        pages.setSize(limit);//设置获取最大记录数
         pages.setTotal(baseMapper.selectBackMoneyByIdCount(cardno));
-        pages.setRecords(backMoneyMapper.selectBackMoneyById(page, limit, cardno));
+        pages.setRecords(backMoneyMapper.selectBackMoneyById(current,limit,cardno));
         return pages;
     }
 
