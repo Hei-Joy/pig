@@ -5,6 +5,8 @@ import com.github.pig.admin.model.dto.CaseDTO;
 import com.github.pig.admin.model.entity.CaseInfo;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -33,4 +35,6 @@ public interface ICaseInfoService extends IService<CaseInfo> {
     void timingUpdate();
 
     int  updateUser(String id,String ownerId);
+
+    List<CaseInfo> selectCaseInfoAllBank(String certno);
 }

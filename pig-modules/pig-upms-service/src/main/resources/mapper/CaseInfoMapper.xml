@@ -415,5 +415,9 @@
         </set>
         WHERE GUID=#{userId}
     </update>
+    <!-- 查询欠债人在所有银行的信息-->
+    <select id="selectCaseInfoAllBank" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.CaseInfo">
+        SELECT * FROM case_info WHERE certno=#{certno}
+    </select>
 
 </mapper>
