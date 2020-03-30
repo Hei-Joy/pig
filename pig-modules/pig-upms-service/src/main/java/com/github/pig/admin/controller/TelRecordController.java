@@ -56,15 +56,14 @@ public class TelRecordController extends BaseController {
     @PostMapping("/insert")
     public R<Boolean> add(@RequestBody TelRecord telRecord){
        //保存备注
+
         String cid = telRecord.getCid();
         CaseInfo caseInfo = caseInfoService.selectById(cid);
         caseInfo.setAttribute1(telRecord.getAttitude());
         caseInfo.setOverdue("0");
         caseInfoService.updateById(caseInfo);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:dd:mm");
         telRecord.setGuid(Tool.getUUid());//设置主键
-        telRecord.setInputtime(sdf.format(Tool.getDate()));//设置时间
-		System.out.println(Tool.getDate());
+        telRecord.setInputtime(Tool.getDate());//设置时间
         telRecord.setInputuserid(UserUtils.getUser());
         return new R<>(telRecordService.insert(telRecord));
     }
