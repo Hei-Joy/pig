@@ -90,6 +90,11 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
         return caseInfoMapper.updateByUserId(id,ownerId);
     }
 
+    @Override
+    public List<CaseInfo> selectCaseInfoAllBank(String certno) {
+        return caseInfoMapper.selectCaseInfoAllBank(certno);
+    }
+
     /**
      * 定时更新是否催收
      */

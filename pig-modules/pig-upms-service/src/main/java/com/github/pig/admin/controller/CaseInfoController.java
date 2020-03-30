@@ -246,4 +246,8 @@ System.out.println(!id.equals(null)+""+!ownerId.equals(null));
 //        }
 //    }
 
+    @GetMapping("/selectCaseInfoAllBank")
+    public List<CaseInfo> selectCaseInfoAllBank(String certno){
+        return caseInfoService.selectCaseInfoAllBank(certno);
+    }
 }
