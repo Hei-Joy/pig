@@ -33,11 +33,11 @@ public class BackMoneyServiceImpl extends ServiceImpl<BackMoneyMapper, BackMoney
     }
 
     @Override
-    public Page<CaseInfo> selectPage(int page, int limit, String bankname, String batchno, String ownerid) {
+    public Page<CaseInfo> selectPage(int page, int limit, String bankname, String batchno, String ownerid,String frontTime,String rearTime) {
         int current = (page - 1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(backMoneyMapper.selectSum(bankname,batchno,ownerid));
-        pages.setRecords(backMoneyMapper.selectPage(current,limit, bankname,batchno,ownerid));
+        pages.setTotal(backMoneyMapper.selectSum(bankname,batchno,ownerid,frontTime,rearTime));
+        pages.setRecords(backMoneyMapper.selectPage(current,limit, bankname,batchno,ownerid,frontTime,rearTime));
         pages.getPages();
         System.out.println(pages);
         System.out.println(pages.getRecords());

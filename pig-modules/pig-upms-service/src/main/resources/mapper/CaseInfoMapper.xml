@@ -231,9 +231,11 @@
         <if test="certno != null and certno != ''">
             and a.certno = #{certno}
         </if>
-
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+        </if>
         AND
-        CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE) LIKE CONCAT('%',#{keyWord},'%')
+        CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE,a.HOMEADDR) LIKE CONCAT('%',#{keyWord},'%')
         <if test = "sort == 'DESC' ">
             ORDER BY  CAST(balance AS DECIMAL) DESC
         </if>
@@ -381,6 +383,9 @@
         </if>
         <if test="certno != null and certno != ''">
             and a.certno = #{certno}
+        </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 

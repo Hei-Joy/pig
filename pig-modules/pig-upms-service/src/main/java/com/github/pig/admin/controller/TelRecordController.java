@@ -59,11 +59,15 @@ public class TelRecordController extends BaseController {
 
         String cid = telRecord.getCid();
         CaseInfo caseInfo = caseInfoService.selectById(cid);
+
         caseInfo.setAttribute1(telRecord.getAttitude());
         caseInfo.setOverdue("0");
+        System.out.println(caseInfo);
         caseInfoService.updateById(caseInfo);
         telRecord.setGuid(Tool.getUUid());//设置主键
-        telRecord.setInputtime(Tool.getDate());//设置时间
+
+        //设置时间
+		telRecord.setInputtime(Tool.getDate());
         telRecord.setInputuserid(UserUtils.getUser());
         return new R<>(telRecordService.insert(telRecord));
     }

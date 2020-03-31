@@ -9,6 +9,7 @@ import com.github.pig.admin.service.IUserInfoService;
 import com.github.pig.admin.service.SysUserService;
 import com.github.pig.common.util.Query;
 import com.github.pig.common.util.UserUtils;
+import com.github.pig.common.vo.UserVO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -78,7 +79,7 @@ public class CaseInfoController extends BaseController {
      * @return
      */
     @RequestMapping("/page")
-    public Page<CaseInfo> page(int page, int limit,String key,String bankname,String batchno,String ownerid,String isMine,String batchnoType,String certno ,String sort){
+    public Page<CaseInfo> page(int page, int limit,String key,String bankname,String batchno,String ownerid,String isMine,String batchnoType,String certno ,String sort,String frontTime,String rearTime){
 
 
         if("1".equals(isMine)){
@@ -86,9 +87,9 @@ public class CaseInfoController extends BaseController {
         }
 
         if(StringUtils.isBlank(key)){
-            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
+            return caseInfoService.selectPageNoKey(page,limit,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort,frontTime,rearTime);
         }
-        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort);
+        return  caseInfoService.selectPageByKey(page,limit,key,this.getUserId(),bankname,batchno,ownerid,batchnoType,certno,sort,frontTime,rearTime);
     }
 
 
@@ -215,11 +216,13 @@ public class CaseInfoController extends BaseController {
     }
     @GetMapping("/updateOwnerId")
     public  int updateOwnerId(String id,String ownerId){
-System.out.println(!id.equals(null)+""+!ownerId.equals(null));
+
         if(id!=" "&ownerId!=" "){
-            return caseInfoService.updateUser(id,ownerId);
+            caseInfoService.updateUser(id,ownerId);
+            return R.FAIL;
         }
-        return 0;
+        return R.SUCCESS;
+
     }
 
 //    @PostMapping
