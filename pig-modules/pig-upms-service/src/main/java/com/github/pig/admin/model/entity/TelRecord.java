@@ -12,7 +12,7 @@ public class TelRecord {
 
     private String inputorgid;
 
-    private String inputtime;
+    private String inputtime;//添加记录时间
 
     private String cid;
 

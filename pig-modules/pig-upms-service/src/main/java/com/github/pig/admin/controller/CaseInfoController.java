@@ -9,6 +9,7 @@ import com.github.pig.admin.service.IUserInfoService;
 import com.github.pig.admin.service.SysUserService;
 import com.github.pig.common.util.Query;
 import com.github.pig.common.util.UserUtils;
+import com.github.pig.common.vo.UserVO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -215,11 +216,13 @@ public class CaseInfoController extends BaseController {
     }
     @GetMapping("/updateOwnerId")
     public  int updateOwnerId(String id,String ownerId){
-System.out.println(!id.equals(null)+""+!ownerId.equals(null));
+
         if(id!=" "&ownerId!=" "){
-            return caseInfoService.updateUser(id,ownerId);
+            caseInfoService.updateUser(id,ownerId);
+            return R.FAIL;
         }
-        return 0;
+        return R.SUCCESS;
+
     }
 
 //    @PostMapping

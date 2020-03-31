@@ -16,7 +16,7 @@ public class Tool {
 
     public static String getDate(){
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String datesdf = sdf.format(date);
         return datesdf;
     }
