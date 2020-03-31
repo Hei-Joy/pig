@@ -27,7 +27,7 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
     Integer selectCountByName(@Param("name") String name,@Param("userId")int userId);
     List<CaseInfo> selectPageByName(@Param("current") int current,@Param("limit") int limit,@Param("name") String name,@Param("userId")int userId);
 
-    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
+    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
 
     List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort,@Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
 

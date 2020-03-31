@@ -314,6 +314,9 @@
         <if test="certno != null and certno != ''">
             and a.certno = #{certno}
         </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+        </if>
     </select>
 
 
@@ -413,7 +416,9 @@
         <if test = "sort == 'ASC' ">
             ORDER BY  CAST(balance AS DECIMAL) ASC
         </if>
-
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+        </if>
         limit #{current},#{limit}
     </select>
     <update id="updateByUserId" parameterType="java.lang.Integer" >
