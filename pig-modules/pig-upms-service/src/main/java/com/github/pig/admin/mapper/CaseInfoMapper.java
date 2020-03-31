@@ -27,13 +27,29 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
     Integer selectCountByName(@Param("name") String name,@Param("userId")int userId);
     List<CaseInfo> selectPageByName(@Param("current") int current,@Param("limit") int limit,@Param("name") String name,@Param("userId")int userId);
 
-    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno);
+    int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname,
+                    @Param("batchno") String batchno, @Param("ownerid") String ownerid,
+                    @Param("batchnoType")String batchnoType,@Param("certno")String certno);
 
-    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit, @Param("keyWord") String keyWord,@Param("userId") Integer userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort,@Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
+    List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit,
+                                   @Param("keyWord") String keyWord,@Param("userId") Integer userId,
+                                   @Param("bankname") String bankname, @Param("batchno") String batchno,
+                                   @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,
+                                   @Param("certno")String certno,@Param("sort")String sort,
+                                   @Param("frontTime")String frontTime,@Param("rearTime")String rearTime,
+                                   @Param("followSort") String followSort);
 
-    Integer selectCountNoKey(@Param("userId") int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
+    Integer selectCountNoKey(@Param("userId") int userId, @Param("bankname") String bankname,
+                             @Param("batchno") String batchno, @Param("ownerid") String ownerid,
+                             @Param("batchnoType")String batchnoType,@Param("certno")String certno,
+                             @Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
 
-    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId, @Param("bankname") String bankname, @Param("batchno") String batchno, @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,@Param("certno")String certno,@Param("sort")String sort,@Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
+    List<CaseInfo> selectPageNoKey(@Param("current") int current, @Param("limit") int limit,@Param("userId")int userId,
+                                   @Param("bankname") String bankname, @Param("batchno") String batchno,
+                                   @Param("ownerid") String ownerid,@Param("batchnoType")String batchnoType,
+                                   @Param("certno")String certno,@Param("sort")String sort,
+                                   @Param("frontTime")String frontTime,@Param("rearTime")String rearTime,
+                                   @Param("followSort") String followSort);
     int updateByUserId(@Param("userId") String userId,@Param("ownerId") String ownerId);
 
     List<CaseInfo> selectCaseInfoAllBank(@Param("certno")String certno);
