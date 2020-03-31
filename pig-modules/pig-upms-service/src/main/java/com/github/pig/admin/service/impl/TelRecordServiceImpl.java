@@ -6,6 +6,7 @@ import com.github.pig.admin.common.util.Tool;
 import com.github.pig.admin.mapper.TelRecordMapper;
 import com.github.pig.admin.model.entity.CaseContacts;
 import com.github.pig.admin.model.entity.TelRecord;
+import com.github.pig.admin.model.entity.WriteTelRecord;
 import com.github.pig.admin.service.TelRecordService;
 import com.github.pig.common.util.R;
 import org.apache.commons.lang.StringUtils;
@@ -24,10 +25,10 @@ public class TelRecordServiceImpl extends ServiceImpl<TelRecordMapper, TelRecord
     }
 
     @Override
-    public Page<TelRecord> selectPageByCid(int page, int limit, String cid,String sort) {
+    public Page<TelRecord> selectPageByCid(int page, int limit, String cid,String sort,String Key,String frontTime,String rearTime) {
         int current = (page -1 ) * limit;//获取当前第page页的第一条数据的下标
         Page<TelRecord> pages = new Page<>();
-        List<TelRecord> list =  telRecordMapper.selectPageByCid(current,limit,cid,sort);
+        List<TelRecord> list =  telRecordMapper.selectPageByCid(current,limit,cid,sort,Key,frontTime,rearTime);
         pages.setRecords(list);
         pages.setSize(limit);
         pages.setCurrent(page);
@@ -35,6 +36,12 @@ public class TelRecordServiceImpl extends ServiceImpl<TelRecordMapper, TelRecord
         pages.getPages();
         return pages;
     }
+
+    @Override
+    public List<WriteTelRecord> writeQuery(String cid, String key, String frontTime, String rearTime) {
+        return telRecordMapper.writeQuery(cid,key,frontTime,rearTime);
+    }
+
 
 
 }
