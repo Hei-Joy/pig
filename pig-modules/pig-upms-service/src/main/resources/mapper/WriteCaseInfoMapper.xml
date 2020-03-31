@@ -7,7 +7,7 @@
                 and c.bankname = #{bankname}
             </if>
             <if test="name != null and name != ''">
-                and c.name LIKE CONCAT('%',#{name},'%')
+                and CONCAT(c.`NAME`,c.CARDNO,c.CERTNO,c.MOBILE,c.HOMEADDR) LIKE CONCAT('%',#{name},'%')
             </if>
             <if test="batchno != null and batchno != ''">
                 and c.batchno LIKE CONCAT('%',#{batchno},'%')
@@ -20,6 +20,9 @@
             </if>
             <if test="certno != null and certno != ''">
                 and c.certno = #{certno}
-        </if>
+            </if>
+            <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+                and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+            </if>
     </select>
 </mapper>
