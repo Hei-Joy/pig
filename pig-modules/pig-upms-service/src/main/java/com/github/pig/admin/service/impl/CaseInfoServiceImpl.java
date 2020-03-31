@@ -48,9 +48,8 @@ public class CaseInfoServiceImpl extends ServiceImpl<CaseInfoMapper, CaseInfo> i
                                           String rearTime,String followSort) {
          int current = (page -1) * limit;
         Page<CaseInfo> pages = this.buildPage(page,limit);
-        pages.setTotal(caseInfoMapper.selectCount(key,userId,bankname,batchno,ownerid,batchnoType,certno));//设置符合条件的所有记录
-        pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key, userId,bankname,batchno,ownerid,batchnoType,
-                certno,sort,frontTime,rearTime,followSort));
+        pages.setTotal(caseInfoMapper.selectCount(key,userId,bankname,batchno,ownerid,batchnoType,certno,frontTime,rearTime));//设置符合条件的所有记录
+        pages.setRecords(caseInfoMapper.selectPageByKey(current,limit,key, userId,bankname,batchno,ownerid,batchnoType,certno,sort,frontTime,rearTime));
 
         pages.getPages();//设置最大页数
         return pages;

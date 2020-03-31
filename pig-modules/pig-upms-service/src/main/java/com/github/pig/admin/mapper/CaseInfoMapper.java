@@ -26,10 +26,10 @@ public interface CaseInfoMapper extends BaseMapper<CaseInfo> {
     int selectCountbatchNo(@Param("batchNo") String batchNo);
     Integer selectCountByName(@Param("name") String name,@Param("userId")int userId);
     List<CaseInfo> selectPageByName(@Param("current") int current,@Param("limit") int limit,@Param("name") String name,@Param("userId")int userId);
-
     int selectCount(@Param("keyWord") String keyWord,@Param("userId") int userId, @Param("bankname") String bankname,
                     @Param("batchno") String batchno, @Param("ownerid") String ownerid,
-                    @Param("batchnoType")String batchnoType,@Param("certno")String certno);
+                    @Param("batchnoType")String batchnoType,@Param("certno")String certno,
+                    @Param("frontTime")String frontTime,@Param("rearTime")String rearTime);
 
     List<CaseInfo> selectPageByKey(@Param("current") int current, @Param("limit") int limit,
                                    @Param("keyWord") String keyWord,@Param("userId") Integer userId,
