@@ -36,7 +36,11 @@
 
     <select id="selectByCid" parameterType="java.lang.String" resultType="com.github.pig.admin.model.entity.TelRecord">
         <include refid="selectLibrary"/>
-        where CID = #{cid,jdbcType=VARCHAR}
+        --3.31改动
+        /*where CID = #{cid,jdbcType=VARCHAR}*/
+        <if test="cid != null and cid != ''">
+            where CID = #{cid,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <insert id="insert" parameterType="com.github.pig.admin.model.entity.TelRecord">
@@ -77,7 +81,16 @@
 
     <select id="selectPageByCid" resultType="com.github.pig.admin.model.entity.TelRecord">
         <include refid="selectLibrary"/>
-        where cid = #{cid}
+        where 1=1
+        <if test="cid != null and cid != ''">
+            and tel.cid = #{cid}
+        </if>
+        <if test="Key != null and Key != ''">
+            and CONCAT(tel.CNAME,tel.INPUTTIME,tel.CELLPHONE,tel.INPUTUSERID) LIKE CONCAT('%',#{Key},'%')
+        </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and tel.inputtime BETWEEN #{frontTime} and #{rearTime}
+        </if>
         <if test="sort =='DESC'">
             ORDER BY  DATE_FORMAT(tel.INPUTTIME, '%Y-%m-%d %H:%i:%s') DESC
         </if>
@@ -100,5 +113,19 @@
         WHERE cid = #{cid}
         ORDER BY DATE_FORMAT (TELTIME, '%Y-%m-%d %H:%i:%s') DESC
         LIMIT 0, 1
+    </select>
+    
+    <select id="writeQuery" resultType="com.github.pig.admin.model.entity.WriteTelRecord">
+        select tel.CNAME,tel.CELLPHONE,tel.INPUTTIME,tel.CONTENT,tel.INPUTUSERID
+        from
+            `tel_record` tel
+        where
+            tel.cid = #{cid}
+        <if test="key != null and key != ''">
+            and CONCAT(tel.CNAME,tel.INPUTTIME,tel.CELLPHONE,tel.INPUTUSERID) LIKE CONCAT('%',#{key},'%')
+        </if>
+        <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
+            and tel.inputtime BETWEEN #{frontTime} and #{rearTime}
+        </if>
     </select>
 </mapper>
