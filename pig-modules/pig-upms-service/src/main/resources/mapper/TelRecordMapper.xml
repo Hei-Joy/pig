@@ -89,7 +89,7 @@
             and CONCAT(tel.CNAME,tel.INPUTTIME,tel.CELLPHONE,tel.INPUTUSERID) LIKE CONCAT('%',#{Key},'%')
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and tel.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(tel.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
         <if test="sort =='DESC'">
             ORDER BY  DATE_FORMAT(tel.INPUTTIME, '%Y-%m-%d %H:%i:%s') DESC
@@ -125,7 +125,7 @@
             and CONCAT(tel.CNAME,tel.INPUTTIME,tel.CELLPHONE,tel.INPUTUSERID) LIKE CONCAT('%',#{key},'%')
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and tel.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(tel.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 </mapper>

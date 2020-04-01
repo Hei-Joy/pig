@@ -22,7 +22,7 @@
                 and c.certno = #{certno}
             </if>
             <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-                and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+                and DATE_FORMAT(c.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
             </if>
     </select>
 </mapper>

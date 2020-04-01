@@ -232,7 +232,7 @@
             and a.certno = #{certno}
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(a.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
         AND
         CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE,a.HOMEADDR) LIKE CONCAT('%',#{keyWord},'%')
@@ -318,7 +318,7 @@
             and a.certno = #{certno}
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(a.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 
@@ -391,7 +391,7 @@
             and a.certno = #{certno}
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(a.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
     </select>
 
@@ -420,7 +420,7 @@
             ORDER BY  CAST(balance AS DECIMAL) ASC
         </if>
         <if test="frontTime != null and frontTime !='' and rearTime != null and rearTime !=''">
-            and a.inputtime BETWEEN #{frontTime} and #{rearTime}
+            and DATE_FORMAT(a.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
         <if test = "followSort != null and followSort != ''">
             ORDER BY CAST(a.OVERDUE AS SIGNED) ${followSort}
