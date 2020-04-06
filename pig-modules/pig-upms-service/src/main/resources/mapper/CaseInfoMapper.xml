@@ -212,13 +212,15 @@
     </select>
 
     <select id="selectPageByKey" resultType="com.github.pig.admin.model.entity.CaseInfo">
-        SELECT
+     <!--   SELECT
         a.*
         FROM
         case_info a
---         LEFT JOIN case_contacts b ON a.GUID = b.CID
-        WHERE 1=1 AND bankname = #{bankname}
+        LEFT JOIN case_contacts b ON a.GUID = b.CID -->
 
+        select * from case_info where guid in (
+        select a.guid from case_info a left join case_contacts t on a.GUID = t.CID
+        WHERE a.GUID = t.CID AND bankname = #{bankname}
         <if test="ownerid != null and ownerid != ''">
             and a.ownerid = #{ownerid}
         </if>
@@ -235,17 +237,17 @@
             and DATE_FORMAT(a.inputtime,'%Y-%m-%d %h:%i:%s') BETWEEN #{frontTime} and #{rearTime}
         </if>
         AND
-        CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE,a.HOMEADDR) LIKE CONCAT('%',#{keyWord},'%')
-        <if test = "sort == 'DESC' ">
-            ORDER BY  CAST(balance AS DECIMAL) DESC
+        CONCAT(a.`NAME`,a.CARDNO,a.CERTNO,a.MOBILE,a.HOMEADDR,t.CELLPHONE) LIKE CONCAT('%',#{keyWord},'%')
+        <if test="sort == 'DESC' ">
+            ORDER BY CAST(balance AS DECIMAL) DESC
         </if>
-        <if test = "sort == 'ASC' ">
-            ORDER BY  CAST(balance AS DECIMAL) ASC
+        <if test="sort == 'ASC' ">
+            ORDER BY CAST(balance AS DECIMAL) ASC
         </if>
-        <if test = "followSort != null and followSort != ''">
+        <if test="followSort != null and followSort != ''">
             ORDER BY CAST(a.OVERDUE AS SIGNED) ${followSort}
         </if>
-        limit #{current},#{limit}
+        )limit #{current},#{limit}
 
 
     </select>
